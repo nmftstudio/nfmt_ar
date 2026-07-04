@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5XL3MFXX');</script>
+<!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — NMFT STUDIO</title>
+  <meta name="description" content="Bitácora de NMFT STUDIO: desarrollo, tecnología, soluciones, media y arte. Notas cortas sobre cómo pensamos el software que construimos.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/blog.css">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XL3MFXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="cosmos">
+    <div class="stars" id="stars"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+
+  <header>
+    <a href="/" class="logo"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</a>
+    <div class="header-nav">
+      <nav class="header-links">
+        <a href="/#promo">Promo App</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/#contacto">Contacto</a>
+      </nav>
+      <a class="btn solid" href="/#contacto">Escribinos</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section style="padding-top: 132px;">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="blip"></span>Bitácora</span>
+        <h2>Notas de NMFT Studio.</h2>
+        <p>Dev, tech, soluciones, media y algo de arte. Registro corto de cómo pensamos el software que construimos, sin relleno.</p>
+      </div>
+
+      <div class="filter-bar reveal" id="filterBar">
+        <button class="filter-chip active" data-cat="todos">Todos</button>
+        <button class="filter-chip" data-cat="dev">Dev</button>
+        <button class="filter-chip" data-cat="tech">Tech</button>
+        <button class="filter-chip" data-cat="soluciones">Soluciones</button>
+        <button class="filter-chip" data-cat="media">Media</button>
+        <button class="filter-chip" data-cat="arte">Arte</button>
+      </div>
+
+      <div class="post-grid reveal" id="postGrid">
+        <p class="empty-state">Cargando posts…</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> NMFT STUDIO — Calamuchita, Córdoba</p>
+      <p>Hecho en Argentina</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    const CATEGORY_LABEL = {
+      dev: 'Dev', tech: 'Tech', soluciones: 'Soluciones', media: 'Media', arte: 'Arte'
+    };
+
+    function formatDate(iso) {
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('es-AR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '');
+    }
+
+    function renderPosts(posts) {
+      const grid = document.getElementById('postGrid');
+      if (!posts.length) {
+        grid.innerHTML = '<p class="empty-state">Todavía no hay posts en esta categoría.</p>';
+        return;
+      }
+      grid.innerHTML = posts.map(p => `
+        <a class="post-card" href="/blog/posts/${p.slug}.html">
+          <div class="post-card-top">
+            <span class="cat-chip cat-${p.category}">${CATEGORY_LABEL[p.category] || p.category}</span>
+            <span class="post-date mono">${formatDate(p.date)}</span>
+          </div>
+          <h3>${p.title}</h3>
+          <p class="excerpt">${p.excerpt}</p>
+          <span class="read-more">Leer nota →</span>
+        </a>
+      `).join('');
+    }
+
+    let allPosts = [];
+
+    fetch('/assets/data/posts.json')
+      .then(r => r.json())
+      .then(posts => {
+        allPosts = posts.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderPosts(allPosts);
+      })
+      .catch(() => {
+        document.getElementById('postGrid').innerHTML = '<p class="empty-state">No se pudieron cargar los posts.</p>';
+      });
+
+    document.getElementById('filterBar').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-chip');
+      if (!btn) return;
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      renderPosts(cat === 'todos' ? allPosts : allPosts.filter(p => p.category === cat));
+    });
+  </script>
+</body>
+</html>

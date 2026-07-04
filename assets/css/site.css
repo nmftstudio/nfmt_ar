@@ -1,0 +1,115 @@
+/* =========================================================
+   NMFT STUDIO — SITE.CSS
+   Base compartida entre index.html y todo /blog/.
+   Extraído 1:1 del sistema visual del home (tokens, header,
+   cosmos, botones, footer, reveal-on-scroll) para que el
+   blog se sienta parte del mismo sitio, no un anexo.
+   ========================================================= */
+
+/* ================= VARIABLES & RESET ================= */
+:root {
+  --bg: #05070a;
+  --bg-alt: #0d1116;
+  --panel: rgba(11, 15, 19, 0.82);
+  --panel-solid: #0b0f13;
+  --ink: #edeef0;
+  --muted: #939ba5;
+  --gold: #c9a15c;
+  --teal: #3fa7a0;
+  --fluor: #ff4fa0;
+  --fluor-dim: rgba(255, 79, 160, 0.14);
+  --line: rgba(237, 238, 240, 0.10);
+  --line-strong: rgba(237, 238, 240, 0.22);
+
+  /* Acentos nuevos, solo para taxonomía del blog.
+     Misma saturación/luminosidad que gold/teal/fluor
+     para no romper la paleta original. */
+  --sky: #4fb0ff;
+  --sky-dim: rgba(79, 176, 255, 0.14);
+  --violet: #8b7cf6;
+  --violet-dim: rgba(139, 124, 246, 0.14);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
+::selection { background: var(--fluor); color: #05070a; }
+
+h1, h2, h3 { font-family: 'Unbounded', sans-serif; letter-spacing: -0.01em; font-weight: 700; line-height: 1.12; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.upper { text-transform: uppercase; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+.eyebrow .blip { width: 6px; height: 6px; border-radius: 50%; background: var(--fluor); box-shadow: 0 0 0 4px var(--fluor-dim); }
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+section { position: relative; z-index: 1; padding: 100px clamp(20px, 6vw, 64px); border-top: 1px solid var(--line); }
+section:first-of-type { border-top: none; }
+
+.wrap { max-width: 1120px; margin: 0 auto; }
+.section-head { max-width: 640px; margin-bottom: 48px; }
+.section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+.section-head p { color: var(--muted); margin-top: 12px; font-size: 1rem; max-width: 52ch; }
+
+/* ================= BOTONES ================= */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px;
+  border: 1px solid var(--gold); color: var(--gold);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; letter-spacing: 0.04em;
+  text-transform: uppercase; border-radius: 2px; transition: all .2s ease; white-space: nowrap;
+  cursor: pointer; background: transparent;
+}
+.btn:hover { background: var(--gold); color: #05070a; }
+.btn.solid { background: var(--gold); color: #05070a; }
+.btn.solid:hover { background: transparent; color: var(--gold); }
+.btn.fluor { border-color: var(--fluor); color: var(--fluor); }
+.btn.fluor:hover { background: var(--fluor); color: #05070a; }
+
+/* ================= HEADER ================= */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px; padding: 0 clamp(20px, 5vw, 56px);
+  background: linear-gradient(to bottom, rgba(5,7,10,0.92), rgba(5,7,10,0.6) 70%, transparent);
+  backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+}
+.logo { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 1.05rem; display: flex; align-items: center; gap: 9px; }
+.logo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(201,161,92,0.15); }
+.header-nav { display: flex; align-items: center; gap: 26px; }
+.header-links { display: flex; gap: 22px; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.header-links a { transition: color .2s ease; }
+.header-links a:hover, .header-links a.active { color: var(--ink); }
+@media(max-width: 768px){ .header-links { display: none; } }
+
+/* ================= COSMOS BACKGROUND ================= */
+.cosmos { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.stars span { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: .5; animation: twinkle linear infinite; }
+@keyframes twinkle { 0%, 100% { opacity: .12; } 50% { opacity: .75; } }
+.glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .14; }
+.glow.g1 { width: 520px; height: 520px; top: -160px; right: -160px; background: var(--teal); }
+.glow.g2 { width: 420px; height: 420px; bottom: 8%; left: -140px; background: var(--fluor); opacity: .06; }
+
+/* ================= FOOTER ================= */
+footer { padding: 40px clamp(20px, 5vw, 56px); border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+
+/* ================= REVEAL ON SCROLL ================= */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1), transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .stars span { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}

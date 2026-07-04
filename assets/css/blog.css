@@ -1,0 +1,83 @@
+/* =========================================================
+   NMFT STUDIO — BLOG.CSS
+   Estilos exclusivos de /blog/: chips de categoría, grilla
+   de posts, filtro y tipografía de artículo. Se carga
+   siempre después de site.css.
+   ========================================================= */
+
+/* ---- Categorías: color = información ---- */
+/* dev = fluor · tech = teal · soluciones = gold · media = sky · arte = violet */
+.cat-dev      { color: var(--fluor); border-color: rgba(255,79,160,0.35); background: var(--fluor-dim); }
+.cat-tech     { color: var(--teal);  border-color: rgba(63,167,160,0.35); background: rgba(63,167,160,0.14); }
+.cat-soluciones { color: var(--gold);  border-color: rgba(201,161,92,0.35); background: rgba(201,161,92,0.14); }
+.cat-media    { color: var(--sky);   border-color: rgba(79,176,255,0.35); background: var(--sky-dim); }
+.cat-arte     { color: var(--violet);border-color: rgba(139,124,246,0.35); background: var(--violet-dim); }
+
+.cat-chip {
+  display: inline-flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px; border: 1px solid;
+  white-space: nowrap;
+}
+
+/* ---- Barra de filtro ---- */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 44px; }
+.filter-chip {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 8px 16px; border-radius: 20px;
+  border: 1px solid var(--line-strong); color: var(--muted);
+  background: transparent; cursor: pointer; transition: all .2s ease;
+}
+.filter-chip:hover { color: var(--ink); border-color: var(--muted); }
+.filter-chip.active { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+
+/* ---- Grilla de posts ---- */
+.post-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+.post-card {
+  display: flex; flex-direction: column; gap: 14px;
+  background: var(--panel-solid); border: 1px solid var(--line);
+  padding: 28px; border-radius: 4px; transition: all .25s ease;
+}
+.post-card:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+.post-card-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.post-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.post-card h3 { font-size: 1.15rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+.post-card p.excerpt { color: var(--muted); font-size: 0.92rem; }
+.post-card .read-more { margin-top: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 6px; }
+.post-card:hover .read-more { color: var(--fluor); }
+
+.empty-state { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; padding: 40px 0; }
+
+/* ---- Encabezado de artículo individual ---- */
+.post-hero { padding-top: 132px; padding-bottom: 40px; }
+.post-hero .meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+.post-hero h1 { font-size: clamp(1.8rem, 4.4vw, 3rem); margin-bottom: 6px; }
+.post-hero .lead { color: var(--muted); font-size: 1.05rem; max-width: 62ch; margin-top: 14px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 32px; transition: color .2s; }
+.back-link:hover { color: var(--ink); }
+
+/* ---- Tipografía del cuerpo del artículo ---- */
+.post-body { max-width: 68ch; }
+.post-body > * + * { margin-top: 22px; }
+.post-body p { color: #d7d9dc; font-size: 1.02rem; line-height: 1.75; }
+.post-body h2 { font-size: 1.4rem; margin-top: 44px; }
+.post-body h3 { font-size: 1.15rem; margin-top: 32px; font-family: 'Inter', sans-serif; font-weight: 700; }
+.post-body ul, .post-body ol { color: #d7d9dc; padding-left: 1.3em; line-height: 1.75; }
+.post-body li + li { margin-top: 8px; }
+.post-body blockquote {
+  border-left: 2px solid var(--fluor); padding: 4px 0 4px 20px;
+  color: var(--ink); font-style: italic; font-size: 1.05rem;
+}
+.post-body code { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; background: var(--panel-solid); border: 1px solid var(--line); padding: 2px 6px; border-radius: 3px; }
+.post-body pre { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; background: var(--panel-solid); border: 1px solid var(--line); padding: 18px; border-radius: 4px; overflow-x: auto; }
+.post-body pre code { border: none; padding: 0; background: none; }
+.post-body hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+.post-body figure { margin-top: 22px; }
+.post-body figcaption { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 8px; }
+
+.post-footer-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--line); flex-wrap: wrap; gap: 16px; }
+
+@media(max-width: 600px) {
+  .post-card-top { flex-wrap: wrap; }
+}

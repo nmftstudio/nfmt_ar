@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5XL3MFXX');</script>
+<!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NMFT STUDIO — Desarrollo de Apps & Diseño Web</title>
+  <meta name="description" content="NMFT STUDIO — Studio indie de desarrollo de aplicaciones y diseño web. Lanzá tu app Android nativa o híbrida por $600.000 ARS.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================= VARIABLES & RESET ================= */
+    :root {
+      --bg: #05070a; 
+      --bg-alt: #0d1116; 
+      --panel: rgba(11, 15, 19, 0.82); 
+      --panel-solid: #0b0f13;
+      --ink: #edeef0; 
+      --muted: #939ba5; 
+      --gold: #c9a15c; 
+      --teal: #3fa7a0;
+      --fluor: #ff4fa0; 
+      --fluor-dim: rgba(255, 79, 160, 0.14);
+      --line: rgba(237, 238, 240, 0.10); 
+      --line-strong: rgba(237, 238, 240, 0.22);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
+    ::selection { background: var(--fluor); color: #05070a; }
+    
+    h1, h2, h3 { font-family: 'Unbounded', sans-serif; letter-spacing: -0.01em; font-weight: 700; line-height: 1.12; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .upper { text-transform: uppercase; }
+    
+    .eyebrow { 
+      font-family: 'JetBrains Mono', monospace; 
+      font-size: 0.7rem; 
+      letter-spacing: 0.2em; 
+      text-transform: uppercase; 
+      color: var(--gold); 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 9px; 
+      margin-bottom: 16px; 
+    }
+    .eyebrow .blip { width: 6px; height: 6px; border-radius: 50%; background: var(--fluor); box-shadow: 0 0 0 4px var(--fluor-dim); }
+    
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    
+    section { position: relative; z-index: 1; padding: 100px clamp(20px, 6vw, 64px); border-top: 1px solid var(--line); }
+    section:first-of-type { border-top: none; }
+    
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .section-head { max-width: 640px; margin-bottom: 48px; }
+    .section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+    .section-head p { color: var(--muted); margin-top: 12px; font-size: 1rem; max-width: 52ch; }
+
+    /* ================= COMPONENTES (BOTONES) ================= */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px;
+      border: 1px solid var(--gold); color: var(--gold);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; letter-spacing: 0.04em;
+      text-transform: uppercase; border-radius: 2px; transition: all .2s ease; white-space: nowrap;
+      cursor: pointer; background: transparent;
+    }
+    .btn:hover { background: var(--gold); color: #05070a; }
+    .btn.solid { background: var(--gold); color: #05070a; }
+    .btn.solid:hover { background: transparent; color: var(--gold); }
+    .btn.fluor { border-color: var(--fluor); color: var(--fluor); }
+    .btn.fluor:hover { background: var(--fluor); color: #05070a; }
+
+    /* ================= HEADER ================= */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px; padding: 0 clamp(20px, 5vw, 56px);
+      background: linear-gradient(to bottom, rgba(5,7,10,0.92), rgba(5,7,10,0.6) 70%, transparent);
+      backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+    }
+    .logo { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 1.05rem; display: flex; align-items: center; gap: 9px; }
+    .logo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(201,161,92,0.15); }
+    .header-nav { display: flex; align-items: center; gap: 26px; }
+    .header-links { display: flex; gap: 22px; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .header-links a { transition: color .2s ease; }
+    .header-links a:hover { color: var(--ink); }
+    @media(max-width: 768px){ .header-links { display: none; } }
+
+    /* ================= COSMOS BACKGROUND ================= */
+    .cosmos { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .stars span { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: .5; animation: twinkle linear infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: .12; } 50% { opacity: .75; } }
+    .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .14; }
+    .glow.g1 { width: 520px; height: 520px; top: -160px; right: -160px; background: var(--teal); }
+    .glow.g2 { width: 420px; height: 420px; bottom: 8%; left: -140px; background: var(--fluor); opacity: .06; }
+
+    /* ================= HERO & PROMO BLOCK ================= */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; padding-top: 120px; padding-bottom: 60px; }
+    .hero-inner { max-width: 680px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 16px; }
+    .hero h1 .accent { color: var(--teal); }
+    .hero p.lead { color: var(--muted); font-size: 1.05rem; max-width: 52ch; margin-bottom: 24px; }
+    
+    /* Contador de Precio */
+    .price-from { display: block; font-size: 0.74rem; letter-spacing: 0.1em; color: var(--teal); margin-top: 20px; }
+    .price-block { display: flex; align-items: baseline; gap: 8px; margin: 4px 0 8px; }
+    .price-cur { font-size: 1.5rem; color: var(--muted); font-weight: 500; }
+    .price-num { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; color: var(--fluor); font-family: 'Unbounded', sans-serif; }
+    .price-tag { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 28px; }
+
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+    /* Phone Mockup Integrado */
+    .phone-stage { position: relative; display: flex; justify-content: center; align-items: center; perspective: 1000px; }
+    .phone {
+      position: relative; width: 240px; height: 480px;
+      background: linear-gradient(160deg, #13171f, #07090c);
+      border-radius: 36px; border: 1px solid var(--line-strong);
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.8);
+      animation: float 6s ease-in-out infinite; transition: transform .15s ease-out;
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
+    .phone-screen { 
+      position: absolute; inset: 8px; border-radius: 28px; 
+      background: radial-gradient(circle at top, #0d121c 0%, #05070a 100%); 
+      display: flex; flex-direction: column; align-items: center; 
+      justify-content: flex-start; gap: 6px; padding: 32px 12px 12px; 
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.03); 
+      touch-action: none;
+    }
+    #arkCanvas {
+      background: rgba(13, 17, 22, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.5);
+      cursor: crosshair;
+      margin-top: 4px;
+      touch-action: none;
+    }
+    .phone-notch {
+      position: absolute; top: 10px; width: 70px; height: 15px;
+      background: #000; border-radius: 10px; z-index: 10;
+    }
+    .phone-status {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.4);
+      padding: 0 8px; z-index: 5;
+    }
+    .phone-icons { display: flex; gap: 5px; align-items: center; }
+    .phone-icons svg { width: 10px; height: 10px; fill: currentColor; }
+    
+    .phone-logo-container {
+      position: relative; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; flex-grow: 1; width: 100%; margin-top: 10px;
+    }
+    .app-icon-glowing-back {
+      position: absolute; width: 120px; height: 120px;
+      background: radial-gradient(circle, var(--fluor-dim) 0%, transparent 70%);
+      opacity: 0.7; filter: blur(15px);
+      animation: pulse-glow 4s ease-in-out infinite alternate;
+    }
+    @keyframes pulse-glow {
+      0% { opacity: 0.4; transform: scale(0.95); }
+      100% { opacity: 0.8; transform: scale(1.15); }
+    }
+    .app-icon-wrapper {
+      position: relative; z-index: 2;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px; padding: 4px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.15);
+    }
+    .app-icon { 
+      width: 76px; height: 76px; border-radius: 18px; 
+      background: linear-gradient(135deg, #0d1116 0%, #05070a 100%); 
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Unbounded', sans-serif; color: #fff;
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.03);
+    }
+    .app-icon .logo-text {
+      font-size: 15px; font-weight: 900; letter-spacing: -0.04em;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--fluor) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+    .app-icon .logo-subtext {
+      font-family: 'JetBrains Mono', monospace; font-size: 5.5px; font-weight: 700;
+      letter-spacing: 0.25em; margin-top: 3px; color: var(--muted);
+      text-transform: uppercase; margin-left: 2px;
+    }
+    
+    .phone-content {
+      width: 100%; display: flex; flex-direction: column; align-items: center;
+      gap: 12px; z-index: 5; margin-bottom: 24px;
+    }
+    .screen-pill {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+      color: var(--fluor); background: var(--fluor-dim); border: 1px solid rgba(255, 79, 160, 0.25);
+      padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em;
+      animation: pulse-border 2s infinite alternate;
+    }
+    @keyframes pulse-border {
+      0% { border-color: rgba(255, 79, 160, 0.2); box-shadow: 0 0 2px rgba(255, 79, 160, 0.1); }
+      100% { border-color: rgba(255, 79, 160, 0.6); box-shadow: 0 0 8px rgba(255, 79, 160, 0.3); }
+    }
+    .screen-bar-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .screen-bar { width: 65%; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.06); }
+    .screen-bar.short { width: 35%; }
+    
+    .phone-home-indicator {
+      position: absolute; bottom: 8px; width: 70px; height: 4px; 
+      background: rgba(255,255,255,0.15); border-radius: 2px; z-index: 10;
+    }
+    .badge-play { position: absolute; bottom: 20px; background: var(--panel-solid); border: 1px solid var(--line); padding: 8px 12px; border-radius: 10px; font-size: 11px; color: var(--ink); display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono'; z-index: 15; }
+    .badge-play svg { width: 12px; height: 12px; fill: var(--teal); }
+
+    @media(max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; justify-items: center; padding-top: 100px; }
+      .hero-cta { justify-content: center; }
+      .price-block { justify-content: center; }
+      .price-from { text-align: center; }
+      .phone-stage { margin-top: 40px; }
+    }
+
+    /* ================= CARDS & GRIDS (PROMO / BLOG) ================= */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: var(--panel-solid); border: 1px solid var(--line); padding: 32px 24px; border-radius: 4px; transition: all 0.25s ease; }
+    .card:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+    .card-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--fluor); margin-bottom: 16px; display: block; }
+    .card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+    .card p { color: var(--muted); font-size: 0.92rem; }
+
+    /* Blog List */
+    .blog-row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .blog-item { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--line); transition: border-color .2s; }
+    .blog-item:hover { border-color: var(--line-strong); }
+    .blog-meta { display: flex; flex-direction: column; gap: 6px; }
+    .blog-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em; }
+    .blog-item h3 { font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 500; }
+    @media(max-width: 600px) {
+      .blog-item { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+
+    /* ================= CONTACT FORM (TABLET MULTI-STEP) ================= */
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; color: var(--muted); }
+    .form-control { width: 100%; background: var(--bg); border: 1px solid var(--line); padding: 13px; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 0.92rem; border-radius: 2px; transition: border-color .2s; }
+    .form-control:focus { outline: none; border-color: var(--teal); }
+    textarea.form-control { resize: vertical; min-height: 90px; }
+
+    .social-link { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; transition: color .2s; }
+    .social-link:hover { color: var(--fluor); }
+    .social-link svg { width: 16px; height: 16px; }
+
+    /* Chips de selección (Tipo de proyecto) */
+    .chip-select { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip-option { position: relative; }
+    .chip-option input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .chip-option span {
+      display: inline-flex; align-items: center; padding: 8px 14px;
+      border: 1px solid var(--line-strong); border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+      text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted);
+      cursor: pointer; transition: all .2s ease; white-space: nowrap;
+    }
+    .chip-option span:hover { border-color: var(--muted); color: var(--ink); }
+    .chip-option input:checked + span { background: var(--fluor); border-color: var(--fluor); color: #05070a; }
+    .chip-option input:focus-visible + span { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* Stage + Tablet Mockup */
+    .tablet-stage { position: relative; display: flex; justify-content: center; align-items: center; perspective: 1400px; margin: 0 auto; }
+    .tablet-mock {
+      position: relative; width: min(760px, 94vw); min-height: 300px;
+      background: linear-gradient(160deg, #13171f, #07090c);
+      border-radius: 26px; border: 1px solid var(--line-strong);
+      box-shadow: 0 40px 90px -24px rgba(0,0,0,0.85);
+      padding: 18px; transition: transform .15s ease-out;
+      animation: floatTabletMock 8s ease-in-out infinite;
+    }
+    @keyframes floatTabletMock {
+      0%, 100% { transform: translateY(0) rotate(0.3deg); }
+      50% { transform: translateY(-10px) rotate(-0.3deg); }
+    }
+    .tablet-cam {
+      position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%; background: #000;
+      box-shadow: inset 0 0 2px rgba(255,255,255,0.15); z-index: 10;
+    }
+    .tablet-screen {
+      position: relative; width: 100%;
+      background: radial-gradient(circle at top, #0d121c 0%, #05070a 100%);
+      border-radius: 14px; border: 1px solid rgba(255,255,255,0.03);
+      overflow: hidden; display: flex; flex-direction: column;
+      padding: 22px clamp(16px, 4vw, 44px) 18px;
+    }
+
+    /* Barra de progreso arcade */
+    .step-progress { width: 100%; height: 5px; background: rgba(255,255,255,0.07); border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 4px rgba(0,0,0,0.6); flex-shrink: 0; }
+    .step-progress-bar { height: 100%; width: 33.333%; background: linear-gradient(90deg, var(--fluor), var(--gold)); box-shadow: 0 0 10px var(--fluor); transition: width .45s cubic-bezier(.16,1,.3,1); }
+    .step-labels { display: flex; justify-content: space-between; margin: 10px 0 16px; flex-shrink: 0; }
+    .step-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.05em; color: var(--muted); transition: color .3s; }
+    .step-label.active { color: var(--fluor); }
+    .step-label.done { color: var(--teal); }
+
+    /* Slider de pasos */
+    #contactForm { display: flex; flex-direction: column; }
+    .form-steps-viewport { overflow: hidden; transition: height .35s cubic-bezier(.16,1,.3,1); }
+    .form-steps { display: flex; width: 300%; align-items: flex-start; transition: transform .45s cubic-bezier(.16,1,.3,1); }
+    .form-step { width: 33.3333%; flex-shrink: 0; display: flex; flex-direction: column; padding: 2px 3px; }
+    .step-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 10px; flex-shrink: 0; }
+    .step-nav .btn { flex: 1; justify-content: center; }
+
+    .confirm-summary { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 5px; }
+    .confirm-row { display: flex; gap: 8px; align-items: baseline; }
+    .confirm-row-msg { align-items: flex-start; }
+    .confirm-label { flex-shrink: 0; width: 62px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    .confirm-value { color: var(--ink); font-size: 0.8rem; overflow: hidden; }
+    .confirm-row-msg .confirm-value { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-clamp: 2; line-height: 1.35; }
+
+    .form-feedback { margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; padding: 10px 14px; border-radius: 4px; flex-shrink: 0; }
+    .form-feedback.ok { color: var(--teal); background: rgba(63,167,160,0.1); border: 1px solid rgba(63,167,160,0.3); }
+    .form-feedback.error { color: var(--fluor); background: rgba(255,79,160,0.08); border: 1px solid rgba(255,79,160,0.3); }
+
+    @media(max-width: 640px) {
+      .tablet-mock { padding: 14px; }
+      .tablet-screen { padding: 16px 14px 14px; }
+      .form-group { margin-bottom: 12px; }
+      textarea.form-control { min-height: 70px; }
+    }
+
+    /* ================= FOOTER ================= */
+    footer { padding: 40px clamp(20px, 5vw, 56px); border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-social { display: flex; gap: 20px; align-items: center; }
+    .footer-social .social-link { font-size: 0.7rem; }
+
+    /* REVEAL SYSTEM */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1), transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .phone, .reveal, .stars span { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ================= TETRIS SECTION ================= */
+    .tetris-section {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media(max-width: 900px) {
+      .tetris-section { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+      .tetris-phone-stage { order: -1; }
+    }
+    .tetris-info { max-width: 520px; }
+    .tetris-info h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 16px; }
+    .tetris-info h2 .accent-gold { color: var(--gold); }
+    .tetris-info p { color: var(--muted); font-size: 1rem; max-width: 48ch; margin-bottom: 28px; }
+    .tetris-phone-stage { position: relative; display: flex; justify-content: center; align-items: center; perspective: 1000px; }
+    .phone-tetris {
+      position: relative; width: 240px; height: 480px;
+      background: linear-gradient(160deg, #13171f, #07090c);
+      border-radius: 36px; border: 1px solid var(--line-strong);
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.8);
+      animation: floatTetris 7s ease-in-out infinite; transition: transform .15s ease-out;
+    }
+    @keyframes floatTetris {
+      0%, 100% { transform: translateY(0) rotate(1deg); }
+      50% { transform: translateY(-14px) rotate(-1deg); }
+    }
+    .phone-tetris .phone-screen {
+      position: absolute; inset: 8px; border-radius: 28px;
+      background: radial-gradient(circle at top, #0d121c 0%, #05070a 100%);
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: flex-start; gap: 6px; padding: 32px 12px 12px;
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.03);
+      touch-action: none;
+    }
+    #tetrisCanvas {
+      background: rgba(13, 17, 22, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.5);
+      margin-top: 4px;
+      touch-action: none;
+    }
+    .screen-pill-teal {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.52rem;
+      color: var(--teal); background: rgba(63, 167, 160, 0.12); border: 1px solid rgba(63, 167, 160, 0.3);
+      padding: 2px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em;
+      animation: pulse-teal 2s infinite alternate; cursor: pointer;
+    }
+    @keyframes pulse-teal {
+      0% { border-color: rgba(63, 167, 160, 0.2); box-shadow: 0 0 2px rgba(63, 167, 160, 0.1); }
+      100% { border-color: rgba(63, 167, 160, 0.6); box-shadow: 0 0 8px rgba(63, 167, 160, 0.4); }
+    }
+    .badge-play-gold { position: absolute; bottom: 20px; background: var(--panel-solid); border: 1px solid var(--line); padding: 8px 12px; border-radius: 10px; font-size: 11px; color: var(--ink); display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono'; z-index: 15; }
+    .badge-play-gold svg { width: 12px; height: 12px; fill: var(--gold); }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XL3MFXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <!-- Background Cosmos -->
+  <div class="cosmos">
+    <div class="stars" id="stars"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</div>
+    <div class="header-nav">
+      <nav class="header-links">
+        <a href="#promo">Promo App</a>
+        <a href="#blog">Blog</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="btn solid" href="#contacto">Escribinos</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    
+    <!-- ================= HERO & PROMO APP ================= -->
+    <section class="hero" id="promo">
+      <div class="hero-inner">
+        <span class="eyebrow"><span class="blip"></span>Lanzamiento Especial MVP</span>
+        <h1>Tu App Mobile<br><span class="accent">Lista para operar.</span></h1>
+        <p class="lead">Desarrollamos el software a medida que tu negocio necesita para escalar. Código limpio, alto rendimiento y una estética de vanguardia alejada de las plantillas de siempre.</p>
+        
+        <span class="price-from mono upper">A partir de</span>
+        <div class="price-block">
+          <span class="price-cur mono">ARS $</span>
+          <span class="price-num" id="priceCounter">0</span>
+        </div>
+        <p class="price-tag mono">Desarrollo + Ficha en tiendas + Código Fuente Incluido</p>
+
+        <div class="hero-cta">
+          <a class="btn solid fluor" href="#contacto" id="cta-promo">Asegurar Promo</a>
+          <a class="btn" href="promo-app.html">Ver qué incluye</a>
+        </div>
+      </div>
+
+      <div class="phone-stage">
+        <div class="phone" id="phoneMock">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-status">
+              <span id="phoneTime">09:41</span>
+              <div class="phone-icons">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M2 22h20V2z"/></svg>
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 21l-12-12c5-5 19-5 24 0z"/></svg>
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm3 4h2v6h-2z"/></svg>
+              </div>
+            </div>
+            
+            <!-- Canvas del Juego Arkanoid -->
+            <canvas id="arkCanvas" width="200" height="280"></canvas>
+            
+            <div class="phone-content" style="margin-bottom: 0; gap: 4px; display: flex; flex-direction: column; align-items: center; width: 100%;">
+              <div class="screen-pill" style="font-size: 0.52rem; cursor: pointer; padding: 2px 8px; border-radius: 10px;" id="btnResetGame">NMFT ARCADE</div>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.48rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; text-align: center;">Toca/Mueve para jugar</span>
+            </div>
+            
+            <div class="phone-home-indicator"></div>
+          </div>
+          <div class="badge-play">
+            <svg viewBox="0 0 24 24"><path d="M3 3l18 9-18 9V3z"/></svg>
+            Google Play & Web ready
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ALCANCE / QUÉ INCLUYE ================= -->
+    <section id="detalles">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="blip"></span>Alcance</span>
+        <h2>¿Qué armamos por este presupuesto?</h2>
+        <p>Garantizamos un despliegue rápido sin perder robustez técnica ni diseño de interfaz.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="card reveal">
+          <span class="card-num">01</span>
+          <h3>Código Fuente Completo</h3>
+          <p>Estructura nativa o híbrida documentada. El software es tuyo, sin ataduras ni suscripciones raras.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-num">02</span>
+          <h3>Ficha e Infraestructura</h3>
+          <p>Configuración del backend base y preparación del entorno para subirlo sin problemas a tiendas de apps.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-num">03</span>
+          <h3>Métricas integradas</h3>
+          <p>Dejamos listo el seteo tracking con Google Analytics 4 desde el día uno para medir tus conversiones reales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BLOG DE DISEÑO & DEV ================= -->
+    <section id="blog">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="blip"></span>Insights</span>
+        <h2>Bitácora de desarrollo.</h2>
+        <p>Compartimos metodologías sobre optimización de código, diseño UI/UX interactivo y cultura indie dev.</p>
+      </div>
+
+      <div class="blog-row reveal">
+        <a class="blog-item" href="/blog/posts/por-que-vendemos-mvp-y-no-promesas.html" style="text-decoration: none; color: inherit;">
+          <div class="blog-meta">
+            <span class="blog-date">03 jul 2026</span>
+            <h3>Por qué vendemos un MVP y no una promesa</h3>
+          </div>
+          <span class="btn mono" style="font-size:0.65rem; padding:6px 12px;">Leer nota →</span>
+        </a>
+        <a class="blog-item" href="/blog/posts/la-estetica-arcade-noir-de-nmft.html" style="text-decoration: none; color: inherit;">
+          <div class="blog-meta">
+            <span class="blog-date">01 jul 2026</span>
+            <h3>La estética arcade-noir detrás de NMFT</h3>
+          </div>
+          <span class="btn mono" style="font-size:0.65rem; padding:6px 12px;">Leer nota →</span>
+        </a>
+      </div>
+
+      <div class="reveal" style="margin-top: 32px; text-align: center;">
+        <a href="/blog/" class="btn">Ver todas las notas</a>
+      </div>
+    </section>
+
+    <!-- ================= CONTACTO ================= -->
+    <section id="contacto">
+      <div class="section-head reveal" style="margin: 0 auto 48px; text-align: center;">
+        <span class="eyebrow" style="justify-content: center;"><span class="blip"></span>Contacto</span>
+        <h2>Iniciemos tu proyecto.</h2>
+        <p style="margin: 12px auto 0;">Completá el formulario paso a paso, ahí en la pantalla. Respondemos en el día.</p>
+      </div>
+
+      <div class="tablet-stage reveal" id="tabletStage">
+        <div class="tablet-mock" id="tabletMock">
+          <div class="tablet-cam"></div>
+          <div class="tablet-screen">
+
+            <!-- Barra de progreso estilo arcade -->
+            <div class="step-progress">
+              <div class="step-progress-bar" id="stepProgressBar"></div>
+            </div>
+            <div class="step-labels mono">
+              <span class="step-label" data-step="1">01 · Quién sos</span>
+              <span class="step-label" data-step="2">02 · Tu proyecto</span>
+              <span class="step-label" data-step="3">03 · Confirmación</span>
+            </div>
+
+            <form id="contactForm" novalidate>
+              <div class="form-steps-viewport">
+                <div class="form-steps" id="formSteps">
+
+                  <!-- PASO 1 — ¿Quién sos? -->
+                  <div class="form-step" data-step="1">
+                    <div class="form-group">
+                      <label for="name">Nombre</label>
+                      <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="step-nav">
+                      <button type="button" class="btn solid step-next">Siguiente →</button>
+                    </div>
+                  </div>
+
+                  <!-- PASO 2 — Tu proyecto -->
+                  <div class="form-step" data-step="2">
+                    <div class="form-group">
+                      <label>Tipo de proyecto</label>
+                      <div class="chip-select">
+                        <label class="chip-option"><input type="radio" name="projectType" value="App Android" required><span>App Android</span></label>
+                        <label class="chip-option"><input type="radio" name="projectType" value="Web / Landing"><span>Web / Landing</span></label>
+                        <label class="chip-option"><input type="radio" name="projectType" value="Sistema / Backend"><span>Sistema / Backend</span></label>
+                        <label class="chip-option"><input type="radio" name="projectType" value="No estoy seguro"><span>No estoy seguro</span></label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="msg">Mensaje / Idea del Proyecto</label>
+                      <textarea id="msg" name="msg" class="form-control" placeholder="Contanos brevemente qué app o web querés construir..." required></textarea>
+                    </div>
+                    <div class="step-nav">
+                      <button type="button" class="btn step-prev">← Atrás</button>
+                      <button type="button" class="btn solid step-next">Siguiente →</button>
+                    </div>
+                  </div>
+
+                  <!-- PASO 3 — Confirmación -->
+                  <div class="form-step" data-step="3">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                      <div class="confirm-summary">
+                        <div class="confirm-row"><span class="confirm-label">Nombre</span><span class="confirm-value" id="sumName">—</span></div>
+                        <div class="confirm-row"><span class="confirm-label">Email</span><span class="confirm-value" id="sumEmail">—</span></div>
+                        <div class="confirm-row"><span class="confirm-label">Proyecto</span><span class="confirm-value" id="sumType">—</span></div>
+                        <div class="confirm-row confirm-row-msg"><span class="confirm-label">Mensaje</span><span class="confirm-value" id="sumMsg">—</span></div>
+                      </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                      <label for="captchaAnswer">Captcha: <span id="captchaQuestion"></span></label>
+                      <input type="text" id="captchaAnswer" name="captchaAnswer" class="form-control" placeholder="Ingresa el resultado" required autocomplete="off">
+                    </div>
+                    <div id="formFeedback" class="form-feedback" style="display:none;"></div>
+                    <div class="step-nav">
+                      <button type="button" class="btn step-prev">← Atrás</button>
+                      <button type="submit" class="btn solid" id="submitBtn">Enviar Consulta</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TETRIS ARCADE SECTION ================= -->
+    <section id="arcade-tetris" style="border-top: 1px solid var(--line);">
+      <div class="tetris-section">
+        <!-- Info lado izquierdo -->
+        <div class="tetris-info reveal">
+          <span class="eyebrow"><span class="blip"></span>NMFT Arcade Vol. 2</span>
+          <h2>Hacemos apps que<br><span class="accent-gold">se pueden jugar.</span></h2>
+          <p>No alcanza con que se vea bien. Las mejores apps generan una experiencia que el usuario quiere repetir. Cada proyecto que construimos tiene esa premisa: funcional, táctil, adictivo.</p>
+          <a href="#contacto" class="btn">Construyamos algo así</a>
+        </div>
+
+        <!-- Celular flotante con Tetris -->
+        <div class="tetris-phone-stage" id="tetrisPhoneStage">
+          <div class="phone-tetris" id="tetrisPhoneMock">
+            <div class="phone-screen" id="tetrisPhoneScreen">
+              <div class="phone-notch"></div>
+              <div class="phone-status">
+                <span id="tetrisPhoneTime">09:41</span>
+                <div class="phone-icons">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M2 22h20V2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 21l-12-12c5-5 19-5 24 0z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm3 4h2v6h-2z"/></svg>
+                </div>
+              </div>
+
+              <!-- Canvas Tetris -->
+              <canvas id="tetrisCanvas" width="200" height="280"></canvas>
+
+              <div style="display:flex; flex-direction:column; align-items:center; gap:4px; width:100%;">
+                <div class="screen-pill-teal" id="btnResetTetris">NMFT TETRIS</div>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.48rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; text-align:center;">← → Mover · ↑ Rotar · ↓ Bajar</span>
+              </div>
+
+              <div class="phone-home-indicator"></div>
+            </div>
+            <div class="badge-play-gold">
+              <svg viewBox="0 0 24 24"><path d="M3 3l18 9-18 9V3z"/></svg>
+              Teclas + Táctil
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> NMFT STUDIO — Calamuchita, Córdoba</p>
+      <div class="footer-social">
+        <a href="https://wa.me/+5493546530511" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18l1-3.4A7.5 7.5 0 1 1 10 17l-4 1z"/><path d="M9.2 9.6c.2 2.2 2 4 4.2 4.2"/></svg>
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://github.com/nmftstudio/" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 5c1.2-.8 2.6-1.2 4-1.2s2.8.4 4 1.2"/><path d="M6.5 15c-2-.3-3-1.8-3-3.6 0-3.8 3.8-6.4 8.5-6.4s8.5 2.6 8.5 6.4c0 1.8-1 3.3-3 3.6"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+      <p>Hecho en Argentina</p>
+    </div>
+  </footer>
+
+  <!-- ================= LOGICA JAVASCRIPT ================= -->
+  <script>
+    // Asignar el año actual automáticamente en el footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Renderizado sutil del fondo estrellado
+    const starsEl = document.getElementById('stars');
+    for(let i=0; i<60; i++){
+      const s = document.createElement('span');
+      s.style.left = Math.random()*100+'%';
+      s.style.top = Math.random()*100+'%';
+      const size = Math.random()*1.5+0.5;
+      s.style.width = s.style.height = size+'px';
+      s.style.animationDuration = (2+Math.random()*4)+'s';
+      s.style.animationDelay = (Math.random()*4)+'s';
+      starsEl.appendChild(s);
+    }
+
+    // Animación incremental de precio ($600.000 ARS)
+    const priceEl = document.getElementById('priceCounter');
+    const targetValue = 600000;
+    const duration = 1500; 
+    const startTime = performance.now();
+
+    function formatCurrency(n){
+      return Math.round(n).toLocaleString('es-AR');
+    }
+
+    function runCounter(now){
+      const progress = Math.min((now - startTime) / duration, 1);
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      priceEl.textContent = formatCurrency(targetValue * easeOutCubic);
+      if(progress < 1) requestAnimationFrame(runCounter);
+    }
+    requestAnimationFrame(runCounter);
+
+    // Efecto interactivo Tilt para el Mockup del celular 
+    const phone = document.getElementById('phoneMock');
+    const stage = document.querySelector('.phone-stage');
+    if(window.matchMedia('(hover: hover)').matches){
+      stage.addEventListener('mousemove', (e) => {
+        const rect = stage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        phone.style.transform = `rotate(${x * 5}deg) translateY(${y * -10}px)`;
+      });
+      stage.addEventListener('mouseleave', () => {
+        phone.style.transform = '';
+      });
+    }
+
+    // Intersecting Observer para efectos "Reveal on scroll"
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ================= FORMULARIO MULTI-PASO (Tablet) + ENVÍO REAL VÍA mail.php =================
+    (function () {
+      const tabletStage = document.getElementById('tabletStage');
+      const tabletMock = document.getElementById('tabletMock');
+      const formSteps = document.getElementById('formSteps');
+      const formStepsViewport = document.querySelector('.form-steps-viewport');
+      const progressBar = document.getElementById('stepProgressBar');
+      const stepLabels = document.querySelectorAll('.step-label');
+      const steps = document.querySelectorAll('.form-step');
+      const totalSteps = steps.length;
+      const form = document.getElementById('contactForm');
+      const feedbackEl = document.getElementById('formFeedback');
+      const submitBtn = document.getElementById('submitBtn');
+      let current = 1;
+
+      function showFeedback(type, msg) {
+        feedbackEl.textContent = msg;
+        feedbackEl.className = 'form-feedback ' + type;
+        feedbackEl.style.display = 'block';
+        syncViewportHeight();
+      }
+      function hideFeedback() {
+        feedbackEl.style.display = 'none';
+        syncViewportHeight();
+      }
+
+      // Ajusta la altura del "visor" al contenido real del paso activo,
+      // así la tablet nunca necesita scroll interno.
+      function syncViewportHeight() {
+        const activeStep = steps[current - 1];
+        if (activeStep) formStepsViewport.style.height = activeStep.scrollHeight + 'px';
+      }
+
+      function goTo(step) {
+        current = step;
+        formSteps.style.transform = `translateX(-${(step - 1) * (100 / totalSteps)}%)`;
+        progressBar.style.width = (step / totalSteps * 100) + '%';
+        stepLabels.forEach(l => {
+          const s = parseInt(l.dataset.step, 10);
+          l.classList.toggle('active', s === step);
+          l.classList.toggle('done', s < step);
+        });
+        if (step === 3) fillSummary();
+        syncViewportHeight();
+      }
+
+      window.addEventListener('resize', () => { syncViewportHeight(); });
+
+      function validateStep(step) {
+        if (step === 1) {
+          const name = document.getElementById('name');
+          const email = document.getElementById('email');
+          if (!name.value.trim()) { name.focus(); return false; }
+          if (!email.checkValidity() || !email.value.trim()) { email.focus(); return false; }
+          return true;
+        }
+        if (step === 2) {
+          const type = document.querySelector('input[name="projectType"]:checked');
+          const msg = document.getElementById('msg');
+          if (!type) { showFeedback('error', 'Elegí un tipo de proyecto para continuar.'); return false; }
+          if (!msg.value.trim()) { msg.focus(); return false; }
+          hideFeedback();
+          return true;
+        }
+        return true;
+      }
+
+      function fillSummary() {
+        document.getElementById('sumName').textContent = document.getElementById('name').value.trim() || '—';
+        document.getElementById('sumEmail').textContent = document.getElementById('email').value.trim() || '—';
+        const type = document.querySelector('input[name="projectType"]:checked');
+        document.getElementById('sumType').textContent = type ? type.value : '—';
+        document.getElementById('sumMsg').textContent = document.getElementById('msg').value.trim() || '—';
+      }
+
+      document.querySelectorAll('.step-next').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (validateStep(current) && current < totalSteps) goTo(current + 1);
+        });
+      });
+      document.querySelectorAll('.step-prev').forEach(btn => {
+        btn.addEventListener('click', () => { if (current > 1) { hideFeedback(); goTo(current - 1); } });
+      });
+
+      // Captcha
+      function generateCaptcha() {
+        const a = Math.floor(Math.random() * 8) + 2;
+        const b = Math.floor(Math.random() * 8) + 2;
+        window.captchaExpected = a + b;
+        document.getElementById('captchaQuestion').textContent = `${a} + ${b} = ?`;
+      }
+      function validateCaptcha() {
+        const answer = document.getElementById('captchaAnswer').value.trim();
+        return String(window.captchaExpected) === answer;
+      }
+      generateCaptcha();
+
+      // Envío real al servidor (PHP), sin abrir el cliente de correo del usuario
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!validateCaptcha()) {
+          showFeedback('error', 'El captcha no es correcto. Probá de nuevo.');
+          document.getElementById('captchaAnswer').focus();
+          generateCaptcha();
+          return;
+        }
+
+        submitBtn.disabled = true;
+        const originalLabel = submitBtn.textContent;
+        submitBtn.textContent = 'Enviando...';
+        hideFeedback();
+
+        const payload = {
+          name: document.getElementById('name').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          projectType: (document.querySelector('input[name="projectType"]:checked') || {}).value || '',
+          msg: document.getElementById('msg').value.trim()
+        };
+
+        fetch('/mail.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(res => res.json().catch(() => ({ ok: false, error: 'Respuesta inválida del servidor.' })))
+          .then(data => {
+            if (data.ok) {
+              showFeedback('ok', '¡Gracias! Tu mensaje fue enviado a NMFT STUDIO. Te respondemos en el día.');
+              form.reset();
+              generateCaptcha();
+              setTimeout(() => goTo(1), 1400);
+              // dataLayer.push({'event': 'form_lead_sent'});
+            } else {
+              showFeedback('error', data.error || 'No pudimos enviar el mensaje. Probá de nuevo o escribinos por WhatsApp.');
+            }
+          })
+          .catch(() => {
+            showFeedback('error', 'Error de conexión. Probá de nuevo o escribinos por WhatsApp.');
+          })
+          .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel;
+          });
+      });
+
+      // Tilt efecto en hover para el mockup de la tablet
+      if (window.matchMedia('(hover: hover)').matches) {
+        tabletStage.addEventListener('mousemove', (e) => {
+          const rect = tabletStage.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          tabletMock.style.transform = `rotate(${x * 4}deg) translateY(${y * -8}px)`;
+        });
+        tabletStage.addEventListener('mouseleave', () => { tabletMock.style.transform = ''; });
+      }
+
+      goTo(1);
+    })();
+
+    // Actualizar la hora en el teléfono simulado con la hora real del visitante
+    function updatePhoneTime() {
+      try {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('es-AR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        });
+        document.getElementById('phoneTime').textContent = timeStr;
+      } catch (err) {
+        console.error('Error al actualizar la hora del teléfono:', err);
+      }
+    }
+    updatePhoneTime();
+    setInterval(updatePhoneTime, 10000);
+
+    // === MINI JUEGO ARKANOID EN MOCKUP MOVIL ===
+    const canvas = document.getElementById('arkCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Configuración de juego
+    let ballRadius = 4;
+    let x = canvas.width / 2;
+    let y = canvas.height - 30;
+    let dx = 2.13;
+    let dy = -2.13;
+    let ballSpeed = 2.13;
+
+    let paddleHeight = 6;
+    let paddleWidth = 40;
+    let paddleX = (canvas.width - paddleWidth) / 2;
+
+    // Configuración de ladrillos (Bricks)
+    let brickRowCount = 4;
+    let brickColumnCount = 5;
+    let brickWidth = 32;
+    let brickHeight = 10;
+    let brickPadding = 5;
+    let brickOffsetTop = 35;
+    let brickOffsetLeft = 10;
+
+    let score = 0;
+    let gameState = 'START'; // START, PLAYING, GAMEOVER, WIN
+
+    // Colores del juego (coherentes con el diseño de la web)
+    const colorFluor = '#ff4fa0';
+    const colorTeal = '#3fa7a0';
+    const colorGold = '#c9a15c';
+    const colorMuted = '#939ba5';
+
+    let bricks = [];
+    function initBricks() {
+      bricks = [];
+      for (let c = 0; c < brickColumnCount; c++) {
+        bricks[c] = [];
+        for (let r = 0; r < brickRowCount; r++) {
+          bricks[c][r] = { x: 0, y: 0, status: 1 };
+        }
+      }
+    }
+    initBricks();
+
+    // Eventos de control (Mouse & Touch)
+    const phoneScreen = document.querySelector('.phone-screen');
+
+    function handleMove(clientX) {
+      const rect = canvas.getBoundingClientRect();
+      const relativeX = clientX - rect.left;
+      if (relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth / 2;
+        // Limitar dentro del canvas
+        if (paddleX < 0) paddleX = 0;
+        if (paddleX + paddleWidth > canvas.width) paddleX = canvas.width - paddleWidth;
+      }
+    }
+
+    phoneScreen.addEventListener('mousemove', (e) => {
+      handleMove(e.clientX);
+    });
+
+    phoneScreen.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        handleMove(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    // Click o Tap para iniciar/reiniciar
+    phoneScreen.addEventListener('click', () => {
+      if (gameState === 'START') {
+        startGame();
+      } else if (gameState === 'GAMEOVER' || gameState === 'WIN') {
+        resetGame();
+      }
+    });
+
+    document.getElementById('btnResetGame').addEventListener('click', (e) => {
+      e.stopPropagation();
+      resetGame();
+    });
+
+    function startGame() {
+      ballSpeed = 2.13;
+      let angle = -Math.PI / 3 - Math.random() * (Math.PI / 3);
+      dx = ballSpeed * Math.cos(angle);
+      dy = ballSpeed * Math.sin(angle);
+      gameState = 'PLAYING';
+    }
+
+    function resetGame() {
+      x = canvas.width / 2;
+      y = canvas.height - 40;
+      ballSpeed = 2.13;
+      let angle = -Math.PI / 3 - Math.random() * (Math.PI / 3);
+      dx = ballSpeed * Math.cos(angle);
+      dy = ballSpeed * Math.sin(angle);
+      paddleX = (canvas.width - paddleWidth) / 2;
+      score = 0;
+      initBricks();
+      gameState = 'PLAYING';
+    }
+
+    function collisionDetection() {
+      let activeBricks = 0;
+      for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+          let b = bricks[c][r];
+          if (b.status === 1) {
+            activeBricks++;
+            if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+              dy = -dy;
+              b.status = 0;
+              score += 10;
+              ballSpeed *= 1.03; // Aumentar velocidad un 3% por cada ladrillo roto
+              dx *= 1.03;
+              dy *= 1.03;
+            }
+          }
+        }
+      }
+      if (activeBricks === 0 && gameState === 'PLAYING') {
+        gameState = 'WIN';
+      }
+    }
+
+    function drawBall() {
+      ctx.beginPath();
+      ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+      ctx.fillStyle = colorFluor;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = colorFluor;
+      ctx.fill();
+      ctx.closePath();
+      ctx.shadowBlur = 0;
+    }
+
+    function drawPaddle() {
+      ctx.beginPath();
+      ctx.rect(paddleX, canvas.height - 18, paddleWidth, paddleHeight);
+      ctx.fillStyle = colorTeal;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = colorTeal;
+      ctx.fill();
+      ctx.closePath();
+      ctx.shadowBlur = 0;
+    }
+
+    function drawBricks() {
+      for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+          if (bricks[c][r].status === 1) {
+            let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
+            let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            ctx.beginPath();
+            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+            
+            if (r === 0) ctx.fillStyle = colorFluor;
+            else if (r === 1) ctx.fillStyle = colorTeal;
+            else if (r === 2) ctx.fillStyle = colorGold;
+            else ctx.fillStyle = '#4f5e71';
+
+            ctx.fill();
+            ctx.closePath();
+          }
+        }
+      }
+    }
+
+    function drawScore() {
+      ctx.font = "bold 9px 'JetBrains Mono', monospace";
+      ctx.fillStyle = colorMuted;
+      ctx.fillText("SCORE: " + score, 10, 22);
+    }
+
+    function drawScreens() {
+      if (gameState === 'START') {
+        ctx.fillStyle = 'rgba(5, 7, 10, 0.88)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = "bold 15px 'Unbounded', sans-serif";
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'center';
+        ctx.fillText("NMFT", canvas.width / 2, canvas.height / 2 - 25);
+        ctx.font = "bold 7px 'JetBrains Mono', monospace";
+        ctx.fillStyle = colorGold;
+        ctx.fillText("ARCADE SYSTEM", canvas.width / 2, canvas.height / 2 - 10);
+
+        ctx.font = "bold 9px 'JetBrains Mono', monospace";
+        ctx.fillStyle = colorFluor;
+        ctx.fillText("TOCA PARA JUGAR", canvas.width / 2, canvas.height / 2 + 30);
+        ctx.textAlign = 'left';
+      } else if (gameState === 'GAMEOVER') {
+        ctx.fillStyle = 'rgba(5, 7, 10, 0.88)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = "bold 12px 'Unbounded', sans-serif";
+        ctx.fillStyle = colorFluor;
+        ctx.textAlign = 'center';
+        ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 10);
+
+        ctx.font = "9px 'JetBrains Mono', monospace";
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText("PUNTOS: " + score, canvas.width / 2, canvas.height / 2 + 10);
+        ctx.fillStyle = colorGold;
+        ctx.fillText("TOCA PARA REINICIAR", canvas.width / 2, canvas.height / 2 + 35);
+        ctx.textAlign = 'left';
+      } else if (gameState === 'WIN') {
+        ctx.fillStyle = 'rgba(5, 7, 10, 0.88)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = "bold 13px 'Unbounded', sans-serif";
+        ctx.fillStyle = colorTeal;
+        ctx.textAlign = 'center';
+        ctx.fillText("¡GANASTE!", canvas.width / 2, canvas.height / 2 - 10);
+
+        ctx.font = "9px 'JetBrains Mono', monospace";
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText("PUNTOS: " + score, canvas.width / 2, canvas.height / 2 + 10);
+        ctx.fillStyle = colorGold;
+        ctx.fillText("TOCA PARA REPETIR", canvas.width / 2, canvas.height / 2 + 35);
+        ctx.textAlign = 'left';
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (gameState === 'START') {
+        x = paddleX + paddleWidth / 2;
+        y = canvas.height - 18 - paddleHeight - ballRadius;
+        drawBricks();
+        drawBall();
+        drawPaddle();
+        drawScreens();
+      } else if (gameState === 'PLAYING') {
+        // Incremento pasivo de velocidad por frame (~0.036 unidades por segundo)
+        ballSpeed += 0.0006;
+        let currentSpeed = Math.sqrt(dx * dx + dy * dy);
+        if (currentSpeed > 0) {
+          dx = (dx / currentSpeed) * ballSpeed;
+          dy = (dy / currentSpeed) * ballSpeed;
+        }
+
+        drawBricks();
+        drawBall();
+        drawPaddle();
+        drawScore();
+        collisionDetection();
+
+        if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+          dx = -dx;
+        }
+
+        if (y + dy < ballRadius + 30) {
+          dy = -dy;
+        } else if (y + dy > canvas.height - 18 - paddleHeight - ballRadius) {
+          if (x > paddleX && x < paddleX + paddleWidth) {
+            let hitPoint = (x - (paddleX + paddleWidth / 2)) / (paddleWidth / 2);
+            hitPoint = Math.max(-0.85, Math.min(0.85, hitPoint)); // Evitar rebotes demasiado horizontales
+            
+            ballSpeed *= 1.02; // Aumentar velocidad 2% por rebotar en la paleta
+            
+            // Recalcular dirección basada en el punto de impacto y aplicar ballSpeed
+            let magnitude = Math.sqrt(hitPoint * hitPoint + 1);
+            dx = ballSpeed * (hitPoint / magnitude);
+            dy = -ballSpeed * (1 / magnitude);
+          } else if (y + dy > canvas.height - ballRadius) {
+            gameState = 'GAMEOVER';
+          }
+        }
+
+        x += dx;
+        y += dy;
+      } else {
+        drawBricks();
+        drawPaddle();
+        drawScreens();
+      }
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // === MINI JUEGO TETRIS EN SEGUNDO MOCKUP ===
+    (function() {
+      const tc = document.getElementById('tetrisCanvas');
+      const tx = tc.getContext('2d');
+      const TW = 20; // tile width
+      const COLS = Math.floor(tc.width / TW);
+      const ROWS = Math.floor(tc.height / TW);
+
+      const COLORS = {
+        I: '#3fa7a0', O: '#c9a15c', T: '#ff4fa0',
+        S: '#7dde92', Z: '#e05c5c', J: '#6fa3ef', L: '#f5a623'
+      };
+
+      const PIECES = {
+        I: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],
+        O: [[1,1],[1,1]],
+        T: [[0,1,0],[1,1,1],[0,0,0]],
+        S: [[0,1,1],[1,1,0],[0,0,0]],
+        Z: [[1,1,0],[0,1,1],[0,0,0]],
+        J: [[1,0,0],[1,1,1],[0,0,0]],
+        L: [[0,0,1],[1,1,1],[0,0,0]]
+      };
+
+      const PIECE_KEYS = Object.keys(PIECES);
+
+      let tBoard, tCurrent, tNext, tScore, tLines, tGameState, tDropInterval, tLastDrop;
+      let tSwipeStartX = null;
+
+      function createBoard() {
+        return Array.from({length: ROWS}, () => Array(COLS).fill(0));
+      }
+
+      function randomPiece() {
+        const key = PIECE_KEYS[Math.floor(Math.random() * PIECE_KEYS.length)];
+        return { type: key, matrix: PIECES[key].map(r => [...r]), x: Math.floor(COLS / 2) - 2, y: 0 };
+      }
+
+      function rotate(matrix) {
+        const n = matrix.length;
+        return matrix[0].map((_, i) => matrix.map(r => r[n - 1 - i]).reverse());
+        // Transpose + reverse each row = 90deg CW
+      }
+      function rotateCW(matrix) {
+        return matrix[0].map((_, i) => matrix.map(r => r[i]).reverse());
+      }
+
+      function isValid(piece, bx, by, mat) {
+        const m = mat || piece.matrix;
+        for (let r = 0; r < m.length; r++) {
+          for (let c = 0; c < m[r].length; c++) {
+            if (!m[r][c]) continue;
+            const nx = (bx !== undefined ? bx : piece.x) + c;
+            const ny = (by !== undefined ? by : piece.y) + r;
+            if (nx < 0 || nx >= COLS || ny >= ROWS) return false;
+            if (ny >= 0 && tBoard[ny][nx]) return false;
+          }
+        }
+        return true;
+      }
+
+      function lockPiece() {
+        const m = tCurrent.matrix;
+        for (let r = 0; r < m.length; r++) {
+          for (let c = 0; c < m[r].length; c++) {
+            if (!m[r][c]) continue;
+            const ny = tCurrent.y + r;
+            const nx = tCurrent.x + c;
+            if (ny < 0) { tGameState = 'GAMEOVER'; return; }
+            tBoard[ny][nx] = tCurrent.type;
+          }
+        }
+        clearLines();
+        tCurrent = tNext;
+        tNext = randomPiece();
+        if (!isValid(tCurrent, tCurrent.x, tCurrent.y)) {
+          tGameState = 'GAMEOVER';
+        }
+      }
+
+      function clearLines() {
+        let cleared = 0;
+        for (let r = ROWS - 1; r >= 0; r--) {
+          if (tBoard[r].every(c => c !== 0)) {
+            tBoard.splice(r, 1);
+            tBoard.unshift(Array(COLS).fill(0));
+            cleared++;
+            r++;
+          }
+        }
+        if (cleared > 0) {
+          const pts = [0, 100, 300, 500, 800];
+          tScore += (pts[cleared] || 800);
+          tLines += cleared;
+          // Speed up every 10 lines
+          tDropInterval = Math.max(80, 600 - Math.floor(tLines / 10) * 50);
+        }
+      }
+
+      function ghostY() {
+        let gy = tCurrent.y;
+        while (isValid(tCurrent, tCurrent.x, gy + 1)) gy++;
+        return gy;
+      }
+
+      function drawBoard() {
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            if (tBoard[r][c]) {
+              tx.fillStyle = COLORS[tBoard[r][c]];
+              tx.shadowBlur = 4;
+              tx.shadowColor = COLORS[tBoard[r][c]];
+              tx.fillRect(c * TW + 1, r * TW + 1, TW - 2, TW - 2);
+              tx.shadowBlur = 0;
+            } else {
+              tx.fillStyle = 'rgba(255,255,255,0.02)';
+              tx.fillRect(c * TW, r * TW, TW, TW);
+            }
+          }
+        }
+      }
+
+      function drawPieceFn(piece, alpha, offsetY) {
+        const m = piece.matrix;
+        tx.globalAlpha = alpha || 1;
+        for (let r = 0; r < m.length; r++) {
+          for (let c = 0; c < m[r].length; c++) {
+            if (!m[r][c]) continue;
+            const px = (piece.x + c) * TW;
+            const py = ((offsetY !== undefined ? offsetY : piece.y) + r) * TW;
+            tx.fillStyle = COLORS[piece.type];
+            tx.shadowBlur = 6;
+            tx.shadowColor = COLORS[piece.type];
+            tx.fillRect(px + 1, py + 1, TW - 2, TW - 2);
+            tx.shadowBlur = 0;
+          }
+        }
+        tx.globalAlpha = 1;
+      }
+
+      function drawHUD() {
+        tx.font = "bold 8px 'JetBrains Mono', monospace";
+        tx.fillStyle = 'rgba(147,155,165,0.8)';
+        tx.textAlign = 'right';
+        tx.fillText('SCORE ' + tScore, tc.width - 4, 10);
+        tx.fillText('LINES ' + tLines, tc.width - 4, 20);
+        tx.textAlign = 'left';
+      }
+
+      function drawTetrisScreens() {
+        tx.fillStyle = 'rgba(5, 7, 10, 0.9)';
+        tx.fillRect(0, 0, tc.width, tc.height);
+        tx.textAlign = 'center';
+
+        if (tGameState === 'START') {
+          tx.font = "bold 14px 'Unbounded', sans-serif";
+          tx.fillStyle = '#ffffff';
+          tx.fillText('NMFT', tc.width / 2, tc.height / 2 - 28);
+          tx.font = "bold 7px 'JetBrains Mono', monospace";
+          tx.fillStyle = COLORS.I;
+          tx.fillText('TETRIS SYSTEM', tc.width / 2, tc.height / 2 - 12);
+          tx.font = "bold 9px 'JetBrains Mono', monospace";
+          tx.fillStyle = COLORS.T;
+          tx.fillText('TOCA PARA JUGAR', tc.width / 2, tc.height / 2 + 28);
+        } else if (tGameState === 'GAMEOVER') {
+          tx.font = "bold 11px 'Unbounded', sans-serif";
+          tx.fillStyle = COLORS.T;
+          tx.fillText('GAME OVER', tc.width / 2, tc.height / 2 - 16);
+          tx.font = "9px 'JetBrains Mono', monospace";
+          tx.fillStyle = '#ffffff';
+          tx.fillText('PUNTOS: ' + tScore, tc.width / 2, tc.height / 2 + 4);
+          tx.fillStyle = COLORS.O;
+          tx.fillText('TOCA PARA REINICIAR', tc.width / 2, tc.height / 2 + 28);
+        }
+        tx.textAlign = 'left';
+      }
+
+      function tLoop(ts) {
+        if (tGameState === 'PLAYING') {
+          if (ts - tLastDrop > tDropInterval) {
+            if (isValid(tCurrent, tCurrent.x, tCurrent.y + 1)) {
+              tCurrent.y++;
+            } else {
+              lockPiece();
+            }
+            tLastDrop = ts;
+          }
+        }
+
+        tx.clearRect(0, 0, tc.width, tc.height);
+
+        if (tGameState === 'PLAYING') {
+          drawBoard();
+          // Ghost piece
+          drawPieceFn(tCurrent, 0.18, ghostY());
+          // Active piece
+          drawPieceFn(tCurrent, 1);
+          drawHUD();
+        } else {
+          drawBoard();
+          drawTetrisScreens();
+        }
+
+        requestAnimationFrame(tLoop);
+      }
+
+      function tInit() {
+        tBoard = createBoard();
+        tCurrent = randomPiece();
+        tNext = randomPiece();
+        tScore = 0;
+        tLines = 0;
+        tDropInterval = 600;
+        tLastDrop = 0;
+        tGameState = 'START';
+      }
+
+      function tStart() {
+        tGameState = 'PLAYING';
+        tLastDrop = performance.now();
+      }
+
+      function tReset() {
+        tInit();
+        tStart();
+      }
+
+      tInit();
+      requestAnimationFrame(tLoop);
+
+      // --- CONTROLES TECLADO ---
+      document.addEventListener('keydown', (e) => {
+        if (tGameState !== 'PLAYING') return;
+        if (e.key === 'ArrowLeft') {
+          if (isValid(tCurrent, tCurrent.x - 1, tCurrent.y)) tCurrent.x--;
+        } else if (e.key === 'ArrowRight') {
+          if (isValid(tCurrent, tCurrent.x + 1, tCurrent.y)) tCurrent.x++;
+        } else if (e.key === 'ArrowDown') {
+          if (isValid(tCurrent, tCurrent.x, tCurrent.y + 1)) tCurrent.y++;
+          else lockPiece();
+        } else if (e.key === 'ArrowUp') {
+          const rotated = rotateCW(tCurrent.matrix);
+          if (isValid(tCurrent, tCurrent.x, tCurrent.y, rotated)) tCurrent.matrix = rotated;
+        } else if (e.key === ' ') {
+          e.preventDefault();
+          tCurrent.y = ghostY();
+          lockPiece();
+        }
+      });
+
+      // --- CONTROLES TÁCTILES (Swipe) ---
+      const tScreen = document.getElementById('tetrisPhoneScreen');
+
+      tScreen.addEventListener('touchstart', (e) => {
+        tSwipeStartX = e.touches[0].clientX;
+      }, { passive: true });
+
+      tScreen.addEventListener('touchend', (e) => {
+        if (tGameState === 'START') { tStart(); return; }
+        if (tGameState === 'GAMEOVER') { tReset(); return; }
+        if (tSwipeStartX === null) return;
+        const dx = e.changedTouches[0].clientX - tSwipeStartX;
+        if (Math.abs(dx) < 10) {
+          // Tap sin swipe = rotar
+          const rotated = rotateCW(tCurrent.matrix);
+          if (isValid(tCurrent, tCurrent.x, tCurrent.y, rotated)) tCurrent.matrix = rotated;
+        } else if (dx < -10) {
+          if (isValid(tCurrent, tCurrent.x - 1, tCurrent.y)) tCurrent.x--;
+        } else if (dx > 10) {
+          if (isValid(tCurrent, tCurrent.x + 1, tCurrent.y)) tCurrent.x++;
+        }
+        tSwipeStartX = null;
+      }, { passive: true });
+
+      // Click en screen para start/reset
+      tScreen.addEventListener('click', () => {
+        if (tGameState === 'START') tStart();
+        else if (tGameState === 'GAMEOVER') tReset();
+      });
+
+      // Botón reset
+      document.getElementById('btnResetTetris').addEventListener('click', (e) => {
+        e.stopPropagation();
+        tReset();
+      });
+
+      // Tilt efecto en hover
+      const tStage = document.getElementById('tetrisPhoneStage');
+      const tMock = document.getElementById('tetrisPhoneMock');
+      if (window.matchMedia('(hover: hover)').matches) {
+        tStage.addEventListener('mousemove', (e) => {
+          const rect = tStage.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width - 0.5;
+          const py = (e.clientY - rect.top) / rect.height - 0.5;
+          tMock.style.transform = `rotate(${px * -5}deg) translateY(${py * -10}px)`;
+        });
+        tStage.addEventListener('mouseleave', () => { tMock.style.transform = ''; });
+      }
+
+      // Hora en el segundo teléfono
+      function updateTetrisTime() {
+        try {
+          const now = new Date();
+          document.getElementById('tetrisPhoneTime').textContent = now.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false });
+        } catch(e) {}
+      }
+      updateTetrisTime();
+      setInterval(updateTetrisTime, 10000);
+    })();
+  </script>
+</body>
+</html>

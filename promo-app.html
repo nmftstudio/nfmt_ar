@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5XL3MFXX');</script>
+<!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promo App $600.000 — Tu app publicada en Google Play | NMFT STUDIO</title>
+  <meta name="description" content="Lanzamiento especial: tu app Android nativa, publicada en Google Play, con código fuente incluido por $600.000 ARS. Cupos limitados. NMFT STUDIO, Calamuchita, Córdoba.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================= VARIABLES & RESET (idéntico a nmft.ar) ================= */
+    :root {
+      --bg: #05070a;
+      --bg-alt: #0d1116;
+      --panel: rgba(11, 15, 19, 0.82);
+      --panel-solid: #0b0f13;
+      --ink: #edeef0;
+      --muted: #939ba5;
+      --gold: #c9a15c;
+      --teal: #3fa7a0;
+      --fluor: #ff4fa0;
+      --fluor-dim: rgba(255, 79, 160, 0.14);
+      --line: rgba(237, 238, 240, 0.10);
+      --line-strong: rgba(237, 238, 240, 0.22);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
+    ::selection { background: var(--fluor); color: #05070a; }
+
+    h1, h2, h3 { font-family: 'Unbounded', sans-serif; letter-spacing: -0.01em; font-weight: 700; line-height: 1.12; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .upper { text-transform: uppercase; }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 16px;
+    }
+    .eyebrow .blip { width: 6px; height: 6px; border-radius: 50%; background: var(--fluor); box-shadow: 0 0 0 4px var(--fluor-dim); }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    section { position: relative; z-index: 1; padding: 100px clamp(20px, 6vw, 64px); border-top: 1px solid var(--line); }
+    section:first-of-type { border-top: none; }
+
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .section-head { max-width: 640px; margin-bottom: 48px; }
+    .section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+    .section-head p { color: var(--muted); margin-top: 12px; font-size: 1rem; max-width: 52ch; }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+    /* ================= BOTONES ================= */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px;
+      border: 1px solid var(--gold); color: var(--gold);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; letter-spacing: 0.04em;
+      text-transform: uppercase; border-radius: 2px; transition: all .2s ease; white-space: nowrap;
+      cursor: pointer; background: transparent;
+    }
+    .btn:hover { background: var(--gold); color: #05070a; }
+    .btn.solid { background: var(--gold); color: #05070a; }
+    .btn.solid:hover { background: transparent; color: var(--gold); }
+    .btn.fluor { border-color: var(--fluor); color: var(--fluor); }
+    .btn.fluor:hover { background: var(--fluor); color: #05070a; }
+    .btn.lg { padding: 15px 26px; font-size: 0.8rem; }
+
+    /* ================= HEADER ================= */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px; padding: 0 clamp(20px, 5vw, 56px);
+      background: linear-gradient(to bottom, rgba(5,7,10,0.92), rgba(5,7,10,0.6) 70%, transparent);
+      backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+    }
+    .logo { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 1.05rem; display: flex; align-items: center; gap: 9px; }
+    .logo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(201,161,92,0.15); }
+    .back-link { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); transition: color .2s ease; }
+    .back-link:hover { color: var(--ink); }
+    .header-nav { display: flex; align-items: center; gap: 18px; }
+    @media(max-width: 640px){ .back-link span.txt { display:none; } }
+
+    /* ================= COSMOS BACKGROUND ================= */
+    .cosmos { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .stars span { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: .5; animation: twinkle linear infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: .12; } 50% { opacity: .75; } }
+    .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .14; }
+    .glow.g1 { width: 520px; height: 520px; top: -160px; right: -160px; background: var(--teal); }
+    .glow.g2 { width: 420px; height: 420px; bottom: 8%; left: -140px; background: var(--fluor); opacity: .06; }
+
+    /* ================= HERO PROMO ================= */
+    .hero { min-height: 96vh; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; padding-top: 128px; padding-bottom: 60px; }
+    .hero-inner { max-width: 680px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); margin-bottom: 16px; }
+    .hero h1 .accent { color: var(--teal); }
+    .hero p.lead { color: var(--muted); font-size: 1.05rem; max-width: 52ch; margin-bottom: 24px; }
+
+    .price-was { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--muted); margin-top: 22px; }
+    .price-was s { color: var(--muted); opacity: .7; }
+    .price-from { display: block; font-size: 0.74rem; letter-spacing: 0.1em; color: var(--teal); margin-top: 6px; }
+    .price-block { display: flex; align-items: baseline; gap: 8px; margin: 4px 0 8px; }
+    .price-cur { font-size: 1.5rem; color: var(--muted); font-weight: 500; }
+    .price-num { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; color: var(--fluor); font-family: 'Unbounded', sans-serif; }
+    .price-tag { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 28px; }
+
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+    .slots-badge {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 26px;
+      padding: 8px 14px; border: 1px solid rgba(255,79,160,0.3); border-radius: 30px;
+      background: var(--fluor-dim); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--fluor);
+    }
+    .slots-badge .blip { width: 6px; height: 6px; border-radius: 50%; background: var(--fluor); animation: pulse-dot 1.4s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+    @media(max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; justify-items: center; padding-top: 108px; }
+      .hero-cta { justify-content: center; }
+      .price-block, .price-was { justify-content: center; text-align: center; }
+      .phone-stage { margin-top: 40px; }
+    }
+
+    /* ================= PHONE MOCK (icono app) ================= */
+    .phone-stage { position: relative; display: flex; justify-content: center; align-items: center; perspective: 1000px; }
+    .phone {
+      position: relative; width: 240px; height: 480px;
+      background: linear-gradient(160deg, #13171f, #07090c);
+      border-radius: 36px; border: 1px solid var(--line-strong);
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.8);
+      animation: float 6s ease-in-out infinite; transition: transform .15s ease-out;
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
+    .phone-screen {
+      position: absolute; inset: 8px; border-radius: 28px;
+      background: radial-gradient(circle at top, #0d121c 0%, #05070a 100%);
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: flex-start; gap: 6px; padding: 32px 12px 12px;
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.03);
+    }
+    .phone-notch { position: absolute; top: 10px; width: 70px; height: 15px; background: #000; border-radius: 10px; z-index: 10; }
+    .phone-status { width: 100%; display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.4); padding: 0 8px; z-index: 5; }
+    .phone-icons { display: flex; gap: 5px; align-items: center; }
+    .phone-icons svg { width: 10px; height: 10px; fill: currentColor; }
+
+    .phone-logo-container { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1; width: 100%; margin-top: 10px; gap: 16px; }
+    .app-icon-glowing-back { position: absolute; width: 130px; height: 130px; background: radial-gradient(circle, var(--fluor-dim) 0%, transparent 70%); opacity: 0.7; filter: blur(15px); animation: pulse-glow 4s ease-in-out infinite alternate; }
+    @keyframes pulse-glow { 0% { opacity: 0.4; transform: scale(0.95); } 100% { opacity: 0.8; transform: scale(1.15); } }
+    .app-icon-wrapper { position: relative; z-index: 2; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: 22px; padding: 4px; box-shadow: 0 15px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.15); }
+    .app-icon { width: 84px; height: 84px; border-radius: 18px; background: linear-gradient(135deg, #0d1116 0%, #05070a 100%); border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Unbounded', sans-serif; color: #fff; box-shadow: inset 0 2px 4px rgba(255,255,255,0.03); }
+    .app-icon .logo-text { font-size: 17px; font-weight: 900; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--gold) 0%, var(--fluor) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+    .app-icon .logo-subtext { font-family: 'JetBrains Mono', monospace; font-size: 6px; font-weight: 700; letter-spacing: 0.25em; margin-top: 3px; color: var(--muted); text-transform: uppercase; margin-left: 2px; }
+    .screen-pill { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--fluor); background: var(--fluor-dim); border: 1px solid rgba(255, 79, 160, 0.25); padding: 4px 11px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; animation: pulse-border 2s infinite alternate; }
+    @keyframes pulse-border { 0% { border-color: rgba(255, 79, 160, 0.2); box-shadow: 0 0 2px rgba(255, 79, 160, 0.1); } 100% { border-color: rgba(255, 79, 160, 0.6); box-shadow: 0 0 8px rgba(255, 79, 160, 0.3); } }
+    .screen-bar-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .screen-bar { width: 65%; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.06); }
+    .screen-bar.short { width: 35%; }
+    .phone-home-indicator { position: absolute; bottom: 8px; width: 70px; height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; z-index: 10; }
+    .badge-play { position: absolute; bottom: 20px; background: var(--panel-solid); border: 1px solid var(--line); padding: 8px 12px; border-radius: 10px; font-size: 11px; color: var(--ink); display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono'; z-index: 15; }
+    .badge-play svg { width: 12px; height: 12px; fill: var(--teal); }
+
+    /* ================= TRUST BAR ================= */
+    .trust-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; padding: 28px clamp(20px,6vw,64px); border-top: 1px solid var(--line); }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.02em; }
+    .trust-item svg { width: 14px; height: 14px; stroke: var(--teal); flex-shrink: 0; }
+
+    /* ================= CARDS & GRIDS ================= */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .card { background: var(--panel-solid); border: 1px solid var(--line); padding: 32px 24px; border-radius: 4px; transition: all 0.25s ease; }
+    .card:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+    .card-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--fluor); margin-bottom: 16px; display: block; }
+    .card h3 { font-size: 1.2rem; margin-bottom: 12px; }
+    .card p { color: var(--muted); font-size: 0.92rem; }
+
+    /* ================= VALUE STACK ================= */
+    .value-stack { background: var(--panel-solid); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+    .value-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 20px 28px; border-bottom: 1px solid var(--line); }
+    .value-row:last-of-type { border-bottom: none; }
+    .value-name { display: flex; gap: 14px; align-items: flex-start; max-width: 62ch; }
+    .value-name .mark { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 0.76rem; flex-shrink: 0; padding-top: 3px; }
+    .value-name b { display:block; margin-bottom: 3px; }
+    .value-name span.desc { color: var(--muted); font-size: 0.88rem; }
+    .value-price { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.86rem; white-space: nowrap; flex-shrink: 0; padding-top: 2px; }
+    .value-total { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding: 26px 28px; background: linear-gradient(90deg, rgba(255,79,160,0.06), transparent); }
+    .value-total .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .value-total .nums { display: flex; align-items: baseline; gap: 12px; }
+    .value-total .old { font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: line-through; font-size: 1rem; }
+    .value-total .new { font-family: 'Unbounded', sans-serif; font-weight: 900; color: var(--fluor); font-size: clamp(1.5rem, 3vw, 2rem); }
+    @media(max-width: 600px){ .value-row { flex-direction: column; } .value-price { padding-top: 0; } }
+
+    /* ================= FAQ ================= */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 800px; }
+    .faq-item { background: var(--panel-solid); border: 1px solid var(--line); border-radius: 4px; padding: 4px 24px; transition: border-color .2s ease; }
+    .faq-item[open] { border-color: var(--line-strong); }
+    .faq-item summary { cursor: pointer; list-style: none; padding: 20px 0; font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary .plus { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 1.2rem; flex-shrink: 0; transition: transform .25s ease; }
+    .faq-item[open] summary .plus { transform: rotate(45deg); }
+    .faq-item p { color: var(--muted); font-size: 0.94rem; padding-bottom: 22px; max-width: 68ch; }
+
+    /* ================= CTA FINAL ================= */
+    .cta-final { background: var(--panel-solid); border: 1px solid var(--line-strong); border-radius: 6px; padding: clamp(32px,5vw,56px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; }
+    .cta-final .txt h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 10px; }
+    .cta-final .txt p { color: var(--muted); max-width: 46ch; }
+    .cta-final .actions { display: flex; flex-direction: column; gap: 12px; min-width: 260px; }
+    .cta-final .actions .btn { justify-content: center; }
+    .meta-line { margin-top: 4px; font-size: 0.84rem; color: var(--muted); }
+    .meta-line b { color: var(--ink); font-weight: 500; }
+
+    /* ================= FOOTER ================= */
+    footer { padding: 40px clamp(20px, 5vw, 56px); border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-social { display: flex; gap: 20px; align-items: center; }
+    .social-link { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; transition: color .2s; }
+    .social-link:hover { color: var(--fluor); }
+    .social-link svg { width: 16px; height: 16px; }
+
+    /* REVEAL SYSTEM */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1), transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .phone, .reveal, .stars span { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XL3MFXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- Background Cosmos -->
+  <div class="cosmos">
+    <div class="stars" id="stars"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a class="logo" href="index.html"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</a>
+    <div class="header-nav">
+      <a class="back-link" href="index.html">← <span class="txt">Volver al inicio</span></a>
+      <a class="btn solid" id="cta-header" href="#" target="_blank" rel="noopener">Escribinos</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ================= HERO PROMO ================= -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <span class="eyebrow"><span class="blip"></span>Promo de lanzamiento · Cupos limitados</span>
+        <h1>Tu app en Google Play,<br><span class="accent">lista en semanas.</span></h1>
+        <p class="lead">Diseñamos y desarrollamos tu aplicación Android a medida, con código fuente propio, publicación en tienda y métricas configuradas desde el día uno. Sin plantillas, sin letra chica.</p>
+
+        <span class="price-was mono">Valor de lista: <s>$850.000 ARS</s></span>
+        <span class="price-from mono upper">Hoy, promo de lanzamiento</span>
+        <div class="price-block">
+          <span class="price-cur mono">ARS $</span>
+          <span class="price-num" id="priceCounter">0</span>
+        </div>
+        <p class="price-tag mono">Desarrollo + Publicación + Código Fuente Incluido</p>
+
+        <div class="hero-cta">
+          <a class="btn solid fluor lg" id="cta-hero" href="#" target="_blank" rel="noopener">Reservar mi cupo por WhatsApp</a>
+          <a class="btn" href="#incluye">Ver qué incluye</a>
+        </div>
+
+        <div class="slots-badge"><span class="blip"></span>Solo tomamos 3 proyectos nuevos por mes</div>
+      </div>
+
+      <div class="phone-stage">
+        <div class="phone" id="phoneMock">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-status">
+              <span id="phoneTime">09:41</span>
+              <div class="phone-icons">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M2 22h20V2z"/></svg>
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 21l-12-12c5-5 19-5 24 0z"/></svg>
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm3 4h2v6h-2z"/></svg>
+              </div>
+            </div>
+
+            <div class="phone-logo-container">
+              <div class="app-icon-glowing-back"></div>
+              <div class="app-icon-wrapper">
+                <div class="app-icon">
+                  <span class="logo-text">N</span>
+                  <span class="logo-subtext">NMFT</span>
+                </div>
+              </div>
+              <span class="screen-pill">Tu app acá</span>
+              <div class="screen-bar-group">
+                <div class="screen-bar"></div>
+                <div class="screen-bar short"></div>
+              </div>
+            </div>
+
+            <div class="phone-home-indicator"></div>
+          </div>
+          <div class="badge-play">
+            <svg viewBox="0 0 24 24"><path d="M3 3l18 9-18 9V3z"/></svg>
+            Google Play & Web ready
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRUST BAR ================= -->
+    <div class="trust-bar reveal">
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Código fuente 100% tuyo</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Publicación en Google Play</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Analytics configurado desde el día 1</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Estudio con base en Calamuchita, Córdoba</span>
+    </div>
+
+    <!-- ================= QUÉ INCLUYE / VALUE STACK ================= -->
+    <section id="incluye">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="blip"></span>Alcance</span>
+        <h2>Todo lo que necesitás para lanzar, en un solo pago.</h2>
+        <p>Nada de módulos sueltos ni sorpresas después. Esto es exactamente lo que se arma con la promo de $600.000.</p>
+      </div>
+
+      <div class="value-stack reveal">
+        <div class="value-row">
+          <div class="value-name"><span class="mark mono">01</span><span><b>Identidad y diseño UX/UI</b><span class="desc">Pantallas e ícono diseñados a medida para tu marca, sin plantillas genéricas.</span></span></div>
+          <span class="value-price">$150.000</span>
+        </div>
+        <div class="value-row">
+          <div class="value-name"><span class="mark mono">02</span><span><b>Desarrollo de app nativa Android</b><span class="desc">Código propio, documentado y optimizado para funcionar bien incluso en equipos de gama media.</span></span></div>
+          <span class="value-price">$380.000</span>
+        </div>
+        <div class="value-row">
+          <div class="value-name"><span class="mark mono">03</span><span><b>Publicación en Google Play</b><span class="desc">Ficha de tienda, capturas, descripción y subida de la app lista para descargar.</span></span></div>
+          <span class="value-price">$90.000</span>
+        </div>
+        <div class="value-row">
+          <div class="value-name"><span class="mark mono">04</span><span><b>Métricas con Google Analytics 4</b><span class="desc">Tracking de eventos y conversiones configurado desde el lanzamiento.</span></span></div>
+          <span class="value-price">$60.000</span>
+        </div>
+        <div class="value-row">
+          <div class="value-name"><span class="mark mono">05</span><span><b>Acompañamiento post-lanzamiento</b><span class="desc">30 días de ajustes y soporte una vez que tu app ya está publicada.</span></span></div>
+          <span class="value-price">$70.000</span>
+        </div>
+        <div class="value-total">
+          <span class="lbl">Valor total si se contrata por separado</span>
+          <div class="nums">
+            <span class="old mono">$750.000</span>
+            <span class="new">$600.000 ARS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROCESO ================= -->
+    <section id="proceso">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="blip"></span>Proceso</span>
+        <h2>Cómo trabajamos, paso a paso.</h2>
+        <p>Un proceso simple y transparente: siempre sabés en qué etapa está tu proyecto.</p>
+      </div>
+      <div class="features-grid">
+        <div class="card reveal">
+          <span class="card-num">01</span>
+          <h3>Consulta</h3>
+          <p>Charlamos tu idea, tu negocio y qué necesitás resolver con la app.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-num">02</span>
+          <h3>Diseño</h3>
+          <p>Te mostramos el boceto de pantallas antes de escribir una sola línea de código.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-num">03</span>
+          <h3>Desarrollo</h3>
+          <p>Avances que vas probando en tu propio celular, sin sorpresas de último momento.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-num">04</span>
+          <h3>Publicación</h3>
+          <p>Subimos la app a Google Play y te entregamos el código fuente completo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= POR QUÉ CONFIAR ================= -->
+    <section id="confianza">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="blip"></span>Por qué NMFT</span>
+        <h2>Un estudio chico, con dueño de proyecto directo.</h2>
+        <p>No sos un ticket en una cola de soporte. Hablás directo con quien diseña y programa tu app.</p>
+      </div>
+      <div class="features-grid">
+        <div class="card reveal">
+          <span class="card-num">→</span>
+          <h3>Sin mensualidades ocultas</h3>
+          <p>Pagás una vez por el desarrollo. El código y la app son tuyos, sin licencias raras atadas.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-num">→</span>
+          <h3>Comunicación directa</h3>
+          <p>Trato personalizado por WhatsApp durante todo el proyecto, sin intermediarios.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-num">→</span>
+          <h3>Base en Calamuchita, Córdoba</h3>
+          <p>Somos un estudio argentino, con historial de apps y sitios publicados. Podés ver nuestro trabajo antes de decidir.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section id="faq">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="blip"></span>Preguntas frecuentes</span>
+        <h2>Antes de escribirnos, quizás esto ya te lo responde.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>¿Cuánto tarda el desarrollo? <span class="plus">+</span></summary>
+          <p>Depende de la complejidad, pero la mayoría de los proyectos con esta promo se completan y publican en Google Play entre 3 y 6 semanas desde que arrancamos.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿El código fuente es realmente mío? <span class="plus">+</span></summary>
+          <p>Sí. Al finalizar el proyecto te entregamos el repositorio completo. No dependés de nosotros para seguir mantenimiento a futuro, aunque también podemos seguir acompañándote si lo preferís.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué pasa si no me gusta el diseño inicial? <span class="plus">+</span></summary>
+          <p>Antes de programar nada te mostramos el boceto de pantallas para tu aprobación. Ajustamos el diseño en esa etapa, así no hay sorpresas cuando la app ya esté funcionando.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿La promo incluye la publicación en Google Play? <span class="plus">+</span></summary>
+          <p>Sí, incluye la ficha de tienda completa (capturas, descripción, ícono) y la subida de la app a tu cuenta de Google Play Console.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo pagar en cuotas? <span class="plus">+</span></summary>
+          <p>Sí, coordinamos la forma de pago que más te convenga al momento de la consulta. Escribinos y lo vemos juntos.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué tipo de apps desarrollan? <span class="plus">+</span></summary>
+          <p>Apps para comercios y negocios, juegos móviles, simuladores interactivos y plataformas para organizaciones comunitarias. Contanos tu idea y te decimos si encaja con la promo.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ================= CTA FINAL ================= -->
+    <section id="contacto">
+      <div class="cta-final reveal">
+        <div class="txt">
+          <h2>¿Arrancamos con tu app?</h2>
+          <p>Contanos tu idea por WhatsApp y coordinamos una charla corta para confirmar tu cupo de la promo.</p>
+          <p class="meta-line"><b>Ubicación:</b> Valle de Calamuchita, Córdoba, Argentina</p>
+          <p class="meta-line"><b>Web:</b> nmft.ar</p>
+        </div>
+        <div class="actions">
+          <a class="btn solid fluor lg" id="cta-final" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+          <a class="btn" href="mailto:hola@nmft.ar">hola@nmft.ar</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> NMFT STUDIO — Calamuchita, Córdoba</p>
+      <div class="footer-social">
+        <a href="https://wa.me/+5493546530511" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18l1-3.4A7.5 7.5 0 1 1 10 17l-4 1z"/><path d="M9.2 9.6c.2 2.2 2 4 4.2 4.2"/></svg>
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://github.com/nmftstudio/" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 5c1.2-.8 2.6-1.2 4-1.2s2.8.4 4 1.2"/><path d="M6.5 15c-2-.3-3-1.8-3-3.6 0-3.8 3.8-6.4 8.5-6.4s8.5 2.6 8.5 6.4c0 1.8-1 3.3-3 3.6"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+      <p>Hecho en Argentina</p>
+    </div>
+  </footer>
+
+  <script>
+    // Año en footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Estrellas de fondo
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 60; i++) {
+      const s = document.createElement('span');
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      const size = Math.random() * 1.5 + 0.5;
+      s.style.width = s.style.height = size + 'px';
+      s.style.animationDuration = (2 + Math.random() * 4) + 's';
+      s.style.animationDelay = (Math.random() * 4) + 's';
+      starsEl.appendChild(s);
+    }
+
+    // Animación incremental del precio ($600.000 ARS)
+    const priceEl = document.getElementById('priceCounter');
+    const targetValue = 600000;
+    const duration = 1500;
+    const startTime = performance.now();
+    function formatCurrency(n) { return Math.round(n).toLocaleString('es-AR'); }
+    function runCounter(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      priceEl.textContent = formatCurrency(targetValue * easeOutCubic);
+      if (progress < 1) requestAnimationFrame(runCounter);
+    }
+    requestAnimationFrame(runCounter);
+
+    // Hora del mockup de celular
+    function updatePhoneTime() {
+      try {
+        const now = new Date();
+        document.getElementById('phoneTime').textContent = now.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false });
+      } catch (e) {}
+    }
+    updatePhoneTime();
+    setInterval(updatePhoneTime, 10000);
+
+    // Tilt del mockup de celular
+    const phone = document.getElementById('phoneMock');
+    const stage = document.querySelector('.phone-stage');
+    if (window.matchMedia('(hover: hover)').matches) {
+      stage.addEventListener('mousemove', (e) => {
+        const rect = stage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        phone.style.transform = `rotate(${x * 5}deg) translateY(${y * -10}px)`;
+      });
+      stage.addEventListener('mouseleave', () => { phone.style.transform = ''; });
+    }
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Links de WhatsApp con mensaje precargado sobre la promo
+    const WHATSAPP_NUMBER = '5493546530511';
+    const waMsg = encodeURIComponent('Hola! Quiero reservar mi cupo de la promo de app por $600.000.');
+    const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
+    ['cta-header', 'cta-hero', 'cta-final'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = waHref;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "por-que-vendemos-mvp-y-no-promesas",
+    "title": "Por qué vendemos un MVP y no una promesa",
+    "excerpt": "La lógica detrás del precio fijo y el código fuente incluido: menos alcance, más velocidad para validar si tu negocio realmente necesita esa app.",
+    "date": "2026-07-03",
+    "category": "dev",
+    "readMinutes": 4
+  },
+  {
+    "slug": "la-estetica-arcade-noir-de-nmft",
+    "title": "La estética arcade-noir detrás de NMFT",
+    "excerpt": "Por qué el sitio tiene un Arkanoid jugable adentro del mockup del celular, y qué tiene que ver eso con cómo pensamos el software que vendemos.",
+    "date": "2026-07-01",
+    "category": "arte",
+    "readMinutes": 3
+  }
+]

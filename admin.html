@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — NMFT STUDIO</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================= VARIABLES & RESET ================= */
+    :root {
+      --bg: #05070a; 
+      --bg-alt: #0d1116; 
+      --panel: rgba(11, 15, 19, 0.85); 
+      --ink: #edeef0; 
+      --muted: #939ba5; 
+      --gold: #c9a15c; 
+      --teal: #3fa7a0;
+      --fluor: #ff4fa0; 
+      --fluor-dim: rgba(255, 79, 160, 0.14);
+      --line: rgba(237, 238, 240, 0.10); 
+      --line-strong: rgba(237, 238, 240, 0.22);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; }
+    
+    /* Cosmos background */
+    .cosmos {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 50% 50%, #0c101a 0%, #05070a 100%);
+      z-index: -1;
+      overflow: hidden;
+    }
+    .glow {
+      position: absolute; width: 600px; height: 600px;
+      border-radius: 50%; filter: blur(140px); opacity: 0.12; pointer-events: none;
+    }
+    .glow.g1 { top: -100px; left: -100px; background: var(--fluor); }
+    .glow.g2 { bottom: -100px; right: -100px; background: var(--teal); }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--fluor);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--fluor);
+    }
+
+    h1, h2, h3 { font-family: 'Unbounded', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .upper { text-transform: uppercase; }
+
+    /* Admin Grid Layout */
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 900px) {
+      .admin-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Form Styles */
+    .panel-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 32px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .form-title {
+      font-size: 1.3rem;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group.row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(5, 7, 10, 0.8);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--fluor);
+      box-shadow: 0 0 10px rgba(255, 79, 160, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .helper-text {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s;
+      cursor: pointer;
+      background: transparent;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: #05070a;
+      box-shadow: 0 0 15px rgba(201, 161, 92, 0.4);
+    }
+
+    .btn.solid {
+      background: var(--fluor);
+      border-color: var(--fluor);
+      color: #05070a;
+    }
+
+    .btn.solid:hover {
+      background: transparent;
+      color: var(--fluor);
+      box-shadow: 0 0 15px rgba(255, 79, 160, 0.4);
+    }
+
+    /* Preview Panel */
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .preview-body-container {
+      background: #0b0f13;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      min-height: 450px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    /* Post Layout in Preview (Mirroring index.html/post.html) */
+    .preview-hero {
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+
+    .preview-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .cat-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .cat-dev { background: rgba(63, 167, 160, 0.15); color: var(--teal); border: 1px solid rgba(63, 167, 160, 0.3); }
+    .cat-tech { background: rgba(255, 79, 160, 0.15); color: var(--fluor); border: 1px solid rgba(255, 79, 160, 0.3); }
+    .cat-soluciones { background: rgba(201, 161, 92, 0.15); color: var(--gold); border: 1px solid rgba(201, 161, 92, 0.3); }
+    .cat-media { background: rgba(147, 155, 165, 0.15); color: var(--muted); border: 1px solid rgba(147, 155, 165, 0.3); }
+    .cat-arte { background: rgba(147, 51, 234, 0.15); color: #a855f7; border: 1px solid rgba(147, 51, 234, 0.3); }
+
+    .preview-hero h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .preview-lead {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .preview-content {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .preview-content p {
+      margin-bottom: 16px;
+    }
+    .preview-content h2 {
+      font-size: 1.1rem;
+      margin: 24px 0 12px 0;
+      color: var(--gold);
+    }
+    .preview-content hr {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 24px 0;
+    }
+
+    /* Modal / Alert Styles */
+    .status-alert {
+      display: none;
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .status-alert.error {
+      background: rgba(255, 79, 160, 0.1);
+      border: 1px solid var(--fluor);
+      color: #ff80b3;
+      box-shadow: 0 0 10px rgba(255, 79, 160, 0.15);
+    }
+
+    .status-alert.success {
+      background: rgba(63, 167, 160, 0.1);
+      border: 1px solid var(--teal);
+      color: #7ef2ea;
+      box-shadow: 0 0 10px rgba(63, 167, 160, 0.15);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cosmos">
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <a href="/" class="logo"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</a>
+      <div class="mono" style="font-size: 0.8rem; color: var(--gold);">ADMINISTRADOR BLOG</div>
+    </header>
+
+    <div class="admin-grid">
+      <!-- Form Panel -->
+      <div class="panel-card">
+        <div class="form-title">
+          <span style="display:inline-block; width:8px; height:8px; background:var(--fluor); border-radius:50%;"></span>
+          <h3>Crear nueva nota</h3>
+        </div>
+
+        <div id="statusAlert" class="status-alert"></div>
+
+        <form id="postForm">
+          <div class="form-group">
+            <label for="title">Título del Post</label>
+            <input type="text" id="title" placeholder="Ej. Por qué construir un MVP hoy" required>
+          </div>
+
+          <div class="form-group row">
+            <div>
+              <label for="category">Categoría</label>
+              <select id="category" required>
+                <option value="dev">Dev</option>
+                <option value="tech">Tech</option>
+                <option value="soluciones">Soluciones</option>
+                <option value="media">Media</option>
+                <option value="arte">Arte</option>
+              </select>
+            </div>
+            <div>
+              <label for="readMinutes">Lectura (Minutos)</label>
+              <input type="number" id="readMinutes" value="3" min="1" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div>
+              <label for="date">Fecha de publicación</label>
+              <input type="date" id="date" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="excerpt">Extracto (Resumen corto)</label>
+            <textarea id="excerpt" rows="2" placeholder="Ej. Un párrafo corto que resuma la idea principal del post." required></textarea>
+            <div class="helper-text">Se usará como la meta description y la entradilla de la nota.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="content">Cuerpo del Post (HTML)</label>
+            <textarea id="content" rows="12" placeholder="<p>Escribe tu contenido aquí...</p>&#10;<h2>Usa subtítulos</h2>&#10;<p>Agrega más párrafos...</p>" required></textarea>
+            <div class="helper-text">Usa etiquetas básicas de HTML como &lt;p&gt;, &lt;h2&gt;, &lt;strong&gt;, &lt;ul&gt;, &lt;li&gt;.</div>
+          </div>
+
+          <button type="submit" class="btn solid" id="submitBtn">Publicar Nota</button>
+        </form>
+      </div>
+
+      <!-- Preview Panel -->
+      <div>
+        <div class="preview-header">
+          <span class="mono upper" style="font-size: 0.75rem; color: var(--muted);">Previsualización en tiempo real</span>
+          <span class="mono" style="font-size: 0.7rem; color: var(--teal);">Vista previa del Post</span>
+        </div>
+
+        <div class="preview-body-container">
+          <div class="preview-hero">
+            <div class="preview-meta">
+              <span class="cat-chip cat-dev" id="prevCategory">Dev</span>
+              <span class="mono" style="font-size: 0.7rem; color: var(--muted);" id="prevDateAndMins">04 jul 2026 · 3 min de lectura</span>
+            </div>
+            <h1 id="prevTitle">Título de la nota</h1>
+            <p class="preview-lead" id="prevExcerpt">Resumen del post...</p>
+          </div>
+          <div class="preview-content" id="prevContent">
+            <p>Escribe en el cuadro de la izquierda para ver el resultado renderizado aquí.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CATEGORY_LABEL = {
+      dev: 'Dev',
+      tech: 'Tech',
+      soluciones: 'Soluciones',
+      media: 'Media',
+      arte: 'Arte'
+    };
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+      const parts = dateStr.split('-');
+      if (parts.length !== 3) return dateStr;
+      const day = parts[2];
+      const monthIdx = parseInt(parts[1], 10) - 1;
+      const year = parts[0];
+      return `${day} ${months[monthIdx] || ''} ${year}`;
+    }
+
+    // Set today's date in input field
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.value = today;
+
+    // Elements
+    const titleEl = document.getElementById('title');
+    const categoryEl = document.getElementById('category');
+    const readMinutesEl = document.getElementById('readMinutes');
+    const excerptEl = document.getElementById('excerpt');
+    const contentEl = document.getElementById('content');
+
+    const prevTitle = document.getElementById('prevTitle');
+    const prevCategory = document.getElementById('prevCategory');
+    const prevDateAndMins = document.getElementById('prevDateAndMins');
+    const prevExcerpt = document.getElementById('prevExcerpt');
+    const prevContent = document.getElementById('prevContent');
+
+    // Update Live Preview
+    function updatePreview() {
+      prevTitle.textContent = titleEl.value || 'Título de la nota';
+      
+      const cat = categoryEl.value;
+      prevCategory.textContent = CATEGORY_LABEL[cat] || cat;
+      prevCategory.className = `cat-chip cat-${cat}`;
+
+      const dateVal = formatDate(dateInput.value);
+      const mins = readMinutesEl.value || '0';
+      prevDateAndMins.textContent = `${dateVal} · ${mins} min de lectura`;
+
+      prevExcerpt.textContent = excerptEl.value || 'Resumen del post...';
+      
+      // Render Content as HTML
+      prevContent.innerHTML = contentEl.value || '<p>Escribe en el cuadro de la izquierda para ver el resultado renderizado aquí.</p>';
+    }
+
+    // Live update event listeners
+    titleEl.addEventListener('input', updatePreview);
+    categoryEl.addEventListener('change', updatePreview);
+    readMinutesEl.addEventListener('input', updatePreview);
+    dateInput.addEventListener('change', updatePreview);
+    excerptEl.addEventListener('input', updatePreview);
+    contentEl.addEventListener('input', updatePreview);
+
+    // Initial render
+    updatePreview();
+
+    // Form submission
+    const form = document.getElementById('postForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusAlert = document.getElementById('statusAlert');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Publicando nota...';
+      statusAlert.style.display = 'none';
+
+      const payload = {
+        title: titleEl.value,
+        category: categoryEl.value,
+        readMinutes: readMinutesEl.value,
+        date: dateInput.value,
+        excerpt: excerptEl.value,
+        content: contentEl.value
+      };
+
+      try {
+        const response = await fetch('/api/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          statusAlert.className = 'status-alert success';
+          statusAlert.innerHTML = `<strong>¡Nota publicada con éxito!</strong><br>Se ha generado el archivo <code>/blog/posts/${data.slug}.html</code> e insertado en la lista del blog.<br><br><a href="/blog/" style="color:#7ef2ea; font-weight:bold; font-family: 'JetBrains Mono', monospace;" target="_blank">IR AL BLOG →</a>`;
+          statusAlert.style.display = 'block';
+          form.reset();
+          dateInput.value = today;
+          updatePreview();
+        } else {
+          throw new Error(data.error || 'Ocurrió un error inesperado al procesar.');
+        }
+      } catch (err) {
+        statusAlert.className = 'status-alert error';
+        statusAlert.innerHTML = `<strong>Error al publicar la nota:</strong><br>${err.message}`;
+        statusAlert.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Publicar Nota';
+      }
+    });
+  </script>
+</body>
+</html>
