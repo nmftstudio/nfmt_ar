@@ -20,6 +20,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="/assets/css/home.css">
     <link rel="stylesheet" href="/assets/css/cosmos-fx.css">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "NMFT STUDIO",
+    "image": "https://nmft.ar/assets/img/logo-nmft.png",
+    "url": "https://nmft.ar",
+    "email": "hola@nmft.ar",
+    "telephone": "+5493546530511",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Córdoba",
+      "addressCountry": "AR"
+    },
+    "areaServed": [
+      { "@type": "State", "name": "Córdoba" },
+      { "@type": "Country", "name": "Argentina" }
+    ],
+    "sameAs": [
+      "https://wa.me/5493546530511",
+      "https://github.com/nmftstudio/"
+    ],
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "name": "Servicios Express",
+        "url": "https://nmft.ar/servicios-express.html",
+        "priceCurrency": "ARS",
+        "price": "35000"
+      },
+      {
+        "@type": "Offer",
+        "name": "Sesión de Diagnóstico Técnico",
+        "url": "https://nmft.ar/consultoria-tecnica.html",
+        "priceCurrency": "ARS",
+        "price": "25000"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -38,11 +79,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="logo" id="logoMenuTrigger"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</div>
     <div class="header-nav">
       <nav class="header-links">
+        <a href="servicios-express.html">Servicios Express</a>
+        <a href="consultoria-tecnica.html">Consultoría</a>
         <a href="promo-app.html">Promo App</a>
         <a href="blog/">Blog</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <a class="btn solid" href="#contacto">Escribinos</a>
+      <a class="btn solid" href="https://wa.me/5493546530511?text=Hola%21%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20NMFT%20Studio." target="_blank" rel="noopener">Escribinos</a>
     </div>
   </header>
 
@@ -55,12 +98,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="mobile-menu-glow"></div>
       <nav class="mobile-menu-links">
-        <a class="mobile-menu-link" style="--i:0" href="promo-app.html">Promo App</a>
-        <a class="mobile-menu-link" style="--i:1" href="blog/">Blog</a>
-        <a class="mobile-menu-link" style="--i:2" href="#contacto">Contacto</a>
+        <a class="mobile-menu-link" style="--i:0" href="servicios-express.html">Servicios Express</a>
+        <a class="mobile-menu-link" style="--i:1" href="consultoria-tecnica.html">Consultoría</a>
+        <a class="mobile-menu-link" style="--i:2" href="promo-app.html">Promo App</a>
+        <a class="mobile-menu-link" style="--i:3" href="blog/">Blog</a>
+        <a class="mobile-menu-link" style="--i:4" href="#contacto">Contacto</a>
       </nav>
       <div class="mobile-menu-footer">
-        <a class="btn solid" href="#contacto">Escribinos</a>
+        <a class="btn solid" href="https://wa.me/5493546530511?text=Hola%21%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20NMFT%20Studio." target="_blank" rel="noopener">Escribinos</a>
       </div>
     </div>
   </div>
@@ -297,6 +342,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
+    <section class="side-services" aria-label="Servicios paralelos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow"><span class="blip"></span>¿No necesitás un desarrollo completo todavía?</span>
+          <h2>Tenemos dos formas más chicas de empezar.</h2>
+          <p>Si tu necesidad es puntual o todavía estás definiendo qué construir, no hace falta arrancar con un proyecto grande.</p>
+        </div>
+        <div class="side-services-grid reveal">
+          <div class="side-card">
+            <span class="tag">Servicios Express</span>
+            <h3>Resolvé algo puntual, ya.</h3>
+            <p>Landing en 48hs, corrección de errores, optimización de velocidad. Precio fijo, plazo cerrado.</p>
+            <div class="side-card-foot">
+              <span class="side-price">Desde $35.000</span>
+              <a class="btn lime" href="servicios-express.html">Ver servicios</a>
+            </div>
+          </div>
+          <div class="side-card">
+            <span class="tag">Consultoría Técnica</span>
+            <h3>Definí antes de invertir.</h3>
+            <p>Sesión de diagnóstico de 30 minutos, auditoría técnica completa o acompañamiento mensual.</p>
+            <div class="side-card-foot">
+              <span class="side-price">Desde $25.000</span>
+              <a class="btn lime" href="consultoria-tecnica.html">Ver opciones</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="hosting-cta" aria-label="Hosting para proyectos sencillos">
       <div class="wrap">
         <div class="hosting-card reveal">
@@ -305,7 +380,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3>Tu web y tu dominio, sin complicaciones.</h3>
             <p>Si solo necesitás una landing, una web institucional o un portfolio para mostrar tu trabajo, tenemos una solución de hosting simple y prolija para arrancar rápido.</p>
           </div>
-          <a href="https://hosting-hosting.com.ar" class="btn solid" target="_blank" rel="noopener">Ver hosting</a>
+          <a href="https://wa.me/5493546530511?text=Hola%21%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20hosting%20simple." class="btn solid" target="_blank" rel="noopener">Consultar</a>
         </div>
       </div>
     </section>

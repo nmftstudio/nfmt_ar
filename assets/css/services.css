@@ -1,0 +1,209 @@
+/* =========================================================
+   NMFT STUDIO — SERVICES.CSS
+   Base compartida para landings de servicios paralelos
+   (Servicios Express, Consultoría Técnica, y las que se
+   sumen despues). Mismo sistema visual que promo-app.css
+   y site.css, sin el mockup de celular ni el confetti.
+   ========================================================= */
+
+:root {
+  --bg: #05070a;
+  --bg-alt: #0d1116;
+  --panel: rgba(11, 15, 19, 0.82);
+  --panel-solid: #0b0f13;
+  --ink: #edeef0;
+  --muted: #939ba5;
+  --gold: #c9a15c;
+  --teal: #3fa7a0;
+  --fluor: #ff4fa0;
+  --fluor-dim: rgba(255, 79, 160, 0.14);
+  --lime: #baff5c;
+  --lime-dim: rgba(186, 255, 92, 0.14);
+  --line: rgba(237, 238, 240, 0.10);
+  --line-strong: rgba(237, 238, 240, 0.22);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
+::selection { background: var(--fluor); color: #05070a; }
+
+h1, h2, h3 { font-family: 'Unbounded', sans-serif; letter-spacing: -0.01em; font-weight: 700; line-height: 1.12; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.upper { text-transform: uppercase; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+.eyebrow .blip { width: 6px; height: 6px; border-radius: 50%; background: var(--fluor); box-shadow: 0 0 0 4px var(--fluor-dim); }
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+section { position: relative; z-index: 1; padding: 100px clamp(20px, 6vw, 64px); border-top: 1px solid var(--line); }
+section:first-of-type { border-top: none; }
+
+.wrap { max-width: 1120px; margin: 0 auto; }
+.section-head { max-width: 640px; margin-bottom: 48px; }
+.section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+.section-head p { color: var(--muted); margin-top: 12px; font-size: 1rem; max-width: 52ch; }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+/* ================= BOTONES ================= */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px;
+  border: 1px solid var(--gold); color: var(--gold);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; letter-spacing: 0.04em;
+  text-transform: uppercase; border-radius: 2px; transition: all .2s ease; white-space: nowrap;
+  cursor: pointer; background: transparent;
+}
+.btn:hover { background: var(--gold); color: #05070a; }
+.btn.solid { background: var(--gold); color: #05070a; }
+.btn.solid:hover { background: transparent; color: var(--gold); }
+.btn.fluor { border-color: var(--fluor); color: var(--fluor); }
+.btn.fluor:hover { background: var(--fluor); color: #05070a; }
+.btn.lime { border-color: var(--lime); color: var(--lime); }
+.btn.lime:hover { background: var(--lime); color: #05070a; }
+.btn.lg { padding: 15px 26px; font-size: 0.8rem; }
+
+/* ================= HEADER ================= */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px; padding: 0 clamp(20px, 5vw, 56px);
+  background: linear-gradient(to bottom, rgba(5,7,10,0.92), rgba(5,7,10,0.6) 70%, transparent);
+  backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+}
+.logo { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 1.05rem; display: flex; align-items: center; gap: 9px; }
+.logo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(201,161,92,0.15); }
+.header-nav { display: flex; align-items: center; gap: 18px; }
+.header-links { display: flex; gap: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.header-links a { transition: color .2s ease; }
+.header-links a:hover, .header-links a.active { color: var(--ink); }
+@media(max-width: 768px){ .header-links { display: none; } }
+
+/* ================= COSMOS BACKGROUND ================= */
+.cosmos { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.stars span { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: .5; animation: twinkle linear infinite; }
+@keyframes twinkle { 0%, 100% { opacity: .12; } 50% { opacity: .75; } }
+.glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .14; }
+.glow.g1 { width: 520px; height: 520px; top: -160px; right: -160px; background: var(--teal); }
+.glow.g2 { width: 420px; height: 420px; bottom: 8%; left: -140px; background: var(--fluor); opacity: .06; }
+
+/* ================= HERO (sin mockup de celular) ================= */
+.hero { min-height: 82vh; display: flex; flex-direction: column; justify-content: center; padding-top: 128px; padding-bottom: 60px; }
+.hero-inner { max-width: 720px; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 16px; }
+.hero h1 .accent { color: var(--teal); }
+.hero h1 .accent-gold { color: var(--gold); }
+.hero p.lead { color: var(--muted); font-size: 1.05rem; max-width: 58ch; margin-bottom: 24px; }
+.hero-pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px; background: rgba(255,255,255,0.03); color: var(--ink); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.hero-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+@media(max-width: 700px) { .hero { text-align: center; padding-top: 108px; } .hero-inner { margin: 0 auto; } .hero-pill-row, .hero-cta { justify-content: center; } }
+
+/* ================= TRUST BAR ================= */
+.trust-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; padding: 28px clamp(20px,6vw,64px); border-top: 1px solid var(--line); }
+.trust-item { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.02em; }
+.trust-item svg { width: 14px; height: 14px; stroke: var(--teal); flex-shrink: 0; }
+
+/* ================= FEATURE / PROCESO CARDS ================= */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.card { background: var(--panel-solid); border: 1px solid var(--line); padding: 32px 24px; border-radius: 4px; transition: all 0.25s ease; }
+.card:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+.card-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--fluor); margin-bottom: 16px; display: block; }
+.card h3 { font-size: 1.2rem; margin-bottom: 12px; }
+.card p { color: var(--muted); font-size: 0.92rem; }
+
+/* ================= SERVICE CARDS (con precio) ================= */
+.service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.service-card { display: flex; flex-direction: column; gap: 14px; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 6px; padding: 28px; transition: all .25s ease; }
+.service-card:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+.service-card .tag {
+  align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--teal); background: rgba(63,167,160,0.12); border: 1px solid rgba(63,167,160,0.3);
+  padding: 3px 10px; border-radius: 20px;
+}
+.service-card h3 { font-size: 1.15rem; }
+.service-card p.desc { color: var(--muted); font-size: 0.9rem; flex-grow: 1; }
+.service-card .price-row { display: flex; justify-content: space-between; align-items: baseline; padding-top: 14px; border-top: 1px solid var(--line); }
+.service-card .price { font-family: 'Unbounded', sans-serif; font-weight: 900; color: var(--fluor); font-size: 1.25rem; }
+.service-card .eta { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; text-align: right; }
+.service-card .btn { justify-content: center; width: 100%; margin-top: 4px; }
+
+/* ================= VALUE STACK (lo que incluye una sesion / paquete) ================= */
+.value-stack { background: var(--panel-solid); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.value-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 20px 28px; border-bottom: 1px solid var(--line); }
+.value-row:last-of-type { border-bottom: none; }
+.value-name { display: flex; gap: 14px; align-items: flex-start; max-width: 62ch; }
+.value-name .mark { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 0.76rem; flex-shrink: 0; padding-top: 3px; }
+.value-name b { display: block; margin-bottom: 3px; }
+.value-name span.desc { color: var(--muted); font-size: 0.88rem; }
+.value-price { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.86rem; white-space: nowrap; flex-shrink: 0; padding-top: 2px; }
+.value-total { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding: 26px 28px; background: linear-gradient(90deg, rgba(255,79,160,0.06), transparent); }
+.value-total .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.value-total .nums { display: flex; align-items: baseline; gap: 12px; }
+.value-total .old { font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: line-through; font-size: 1rem; }
+.value-total .new { font-family: 'Unbounded', sans-serif; font-weight: 900; color: var(--fluor); font-size: clamp(1.5rem, 3vw, 2rem); }
+.value-note { padding: 14px 28px 26px; color: var(--muted); font-size: 0.86rem; border-top: 1px solid var(--line); }
+@media(max-width: 600px){ .value-row { flex-direction: column; } .value-price { padding-top: 0; } }
+
+/* ================= FAQ ================= */
+.faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 800px; }
+.faq-item { background: var(--panel-solid); border: 1px solid var(--line); border-radius: 4px; padding: 4px 24px; transition: border-color .2s ease; }
+.faq-item[open] { border-color: var(--line-strong); }
+.faq-item summary { cursor: pointer; list-style: none; padding: 20px 0; font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary .plus { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 1.2rem; flex-shrink: 0; transition: transform .25s ease; }
+.faq-item[open] summary .plus { transform: rotate(45deg); }
+.faq-item p { color: var(--muted); font-size: 0.94rem; padding-bottom: 22px; max-width: 68ch; }
+
+/* ================= CTA FINAL / FOOTER ================= */
+.cta-final { background: var(--panel-solid); border: 1px solid var(--line-strong); border-radius: 6px; padding: clamp(32px,5vw,56px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; }
+.cta-final .meta-line { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+.cta-final .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+footer { padding: 40px clamp(20px, 5vw, 56px); border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-social { display: flex; gap: 20px; align-items: center; }
+.social-link { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); transition: color .2s ease; }
+.social-link:hover { color: var(--fluor); }
+.social-link svg { width: 16px; height: 16px; }
+
+/* ================= REVEAL ON SCROLL ================= */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1), transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .stars span { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ================= DIAGNÓSTICO: FLUJO DE 2 PASOS (agenda + pago) ================= */
+.diag-steps { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.diag-steps .btn { position: relative; }
+.diag-step-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; opacity: 0.7; margin-right: 6px;
+}
+.diag-note {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--muted);
+  text-align: center; letter-spacing: 0.02em; margin-top: 2px;
+}
+
+/* ================= GARANTÍA BADGE (tarjeta de diagnóstico) ================= */
+.guarantee-badge {
+  display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.02em;
+  color: var(--lime); background: var(--lime-dim); border: 1px solid rgba(186,255,92,0.3);
+  padding: 6px 12px; border-radius: 20px; line-height: 1.3;
+}
