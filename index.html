@@ -18,6 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/cosmos-fx.css">
 
 </head>
 <body>
@@ -152,22 +153,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Compartimos metodologías sobre optimización de código, diseño UI/UX interactivo y cultura indie dev.</p>
       </div>
 
-      <div class="blog-row reveal">
-        <a class="blog-item" href="/blog/posts/por-que-vendemos-mvp-y-no-promesas.html" style="text-decoration: none; color: inherit;">
-          <div class="blog-meta">
-            <span class="blog-date">03 jul 2026</span>
-            <h3>Por qué vendemos un MVP y no una promesa</h3>
-          </div>
-          <span class="btn mono" style="font-size:0.65rem; padding:6px 12px;">Leer nota →</span>
-        </a>
-        <a class="blog-item" href="/blog/posts/la-estetica-arcade-noir-de-nmft.html" style="text-decoration: none; color: inherit;">
-          <div class="blog-meta">
-            <span class="blog-date">01 jul 2026</span>
-            <h3>La estética arcade-noir detrás de NMFT</h3>
-          </div>
-          <span class="btn mono" style="font-size:0.65rem; padding:6px 12px;">Leer nota →</span>
-        </a>
-      </div>
+      <div class="blog-row reveal" id="homeBlogRow"></div>
 
       <div class="reveal" style="margin-top: 32px; text-align: center;">
         <a href="/blog/" class="btn">Ver todas las notas</a>
@@ -297,7 +283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
               <div style="display:flex; flex-direction:column; align-items:center; gap:4px; width:100%;">
                 <div class="screen-pill-teal" id="btnResetTetris">NMFT TETRIS</div>
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.48rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; text-align:center;">← → Mover · ↺ Rotar · ↓ Bajar</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.48rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; text-align:center;">← → Mover · ↺ Rotar</span>
               </div>
 
               <div class="phone-home-indicator"></div>
@@ -346,6 +332,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ================= LOGICA JAVASCRIPT ================= -->
     <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/cosmos-fx.js"></script>
 
 </body>
 </html>

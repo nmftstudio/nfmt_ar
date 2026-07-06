@@ -12,6 +12,33 @@ for (let i = 0; i < 60; i++) {
   starsEl.appendChild(s);
 }
 
+// ---------- Bitácora (últimos 2 posts, dinámico desde posts.json) ----------
+function formatDateHome(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('es-AR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '');
+}
+
+const homeBlogRow = document.getElementById('homeBlogRow');
+if (homeBlogRow) {
+  fetch('/assets/data/posts.json')
+    .then(r => r.json())
+    .then(posts => {
+      const ultimos = posts.slice().sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 2);
+      homeBlogRow.innerHTML = ultimos.map(p => `
+        <a class="blog-item" href="/blog/posts/${p.slug}.html" style="text-decoration: none; color: inherit;">
+          <div class="blog-meta">
+            <span class="blog-date">${formatDateHome(p.date)}</span>
+            <h3>${p.title}</h3>
+          </div>
+          <span class="btn mono" style="font-size:0.65rem; padding:6px 12px;">Leer nota →</span>
+        </a>
+      `).join('');
+    })
+    .catch(() => {
+      homeBlogRow.innerHTML = '<p class="empty-state">No se pudieron cargar las notas.</p>';
+    });
+}
+
 const priceEl = document.getElementById('priceCounter');
 const targetValue = 600000;
 const duration = 1500;
@@ -212,7 +239,10 @@ function updatePhoneTime() {
       minute: '2-digit',
       hour12: false
     });
-    document.getElementById('phoneTime').textContent = timeStr;
+    const phoneTimeEl = document.getElementById('phoneTime');
+    if (phoneTimeEl) phoneTimeEl.textContent = timeStr;
+    const tetrisPhoneTimeEl = document.getElementById('tetrisPhoneTime');
+    if (tetrisPhoneTimeEl) tetrisPhoneTimeEl.textContent = timeStr;
   } catch (err) {
     console.error('Error al actualizar la hora del teléfono:', err);
   }
@@ -472,6 +502,9 @@ draw();
   const PIECE_KEYS = Object.keys(PIECES);
   let tBoard, tCurrent, tNext, tScore, tLines, tGameState, tDropInterval, tLastDrop;
   let tSwipeStartX = null, tSwipeStartY = null;
+  let tEffects = []; // flash effects when a line is cleared
+  let tPopup = null; // floating score popup text
+  let tShakeUntil = 0; // brief screen-shake on line clear
 
   function createBoard() { return Array.from({ length: ROWS }, () => Array(COLS).fill(0)); }
   function randomPiece() {
@@ -479,8 +512,9 @@ draw();
     return { type: key, matrix: PIECES[key].map(r => [...r]), x: Math.floor(COLS / 2) - 2, y: 0 };
   }
   function rotate(matrix) {
+    // True 90 degree clockwise rotation: cycles through 4 distinct positions.
     const n = matrix.length;
-    return matrix[0].map((_, i) => matrix.map(r => r[n - 1 - i]).reverse());
+    return matrix.map((row, r) => row.map((_, c) => matrix[n - 1 - c][r]));
   }
   function isValid(piece, bx, by, mat) {
     const m = mat || piece.matrix;
@@ -513,8 +547,10 @@ draw();
   }
   function clearLines() {
     let cleared = 0;
+    const now = performance.now();
     for (let r = ROWS - 1; r >= 0; r--) {
       if (tBoard[r].every(c => c !== 0)) {
+        tEffects.push({ y: r * TW, start: now, duration: 260 });
         tBoard.splice(r, 1);
         tBoard.unshift(Array(COLS).fill(0));
         cleared++;
@@ -523,9 +559,12 @@ draw();
     }
     if (cleared > 0) {
       const pts = [0, 100, 300, 500, 800];
-      tScore += (pts[cleared] || 800);
+      const gained = pts[cleared] || 800;
+      tScore += gained;
       tLines += cleared;
       tDropInterval = Math.max(80, 600 - Math.floor(tLines / 10) * 50);
+      tPopup = { text: cleared >= 4 ? 'TETRIS!' : ('+' + gained), start: now, duration: 700 };
+      tShakeUntil = now + 180;
     }
   }
   function ghostY() {
@@ -566,10 +605,49 @@ draw();
     }
     tx.globalAlpha = 1;
   }
+  function drawEffects(now) {
+    for (let i = tEffects.length - 1; i >= 0; i--) {
+      const ef = tEffects[i];
+      const t = (now - ef.start) / ef.duration;
+      if (t >= 1) { tEffects.splice(i, 1); continue; }
+      const alpha = 1 - t;
+      tx.fillStyle = `rgba(255,255,255,${(alpha * 0.85).toFixed(3)})`;
+      tx.shadowBlur = 14;
+      tx.shadowColor = '#ffffff';
+      tx.fillRect(0, ef.y, COLS * TW, TW);
+      tx.shadowBlur = 0;
+    }
+    if (tPopup) {
+      const t = (now - tPopup.start) / tPopup.duration;
+      if (t >= 1) {
+        tPopup = null;
+      } else {
+        const alpha = 1 - t;
+        const riseY = -20 * t;
+        tx.save();
+        tx.globalAlpha = alpha;
+        tx.fillStyle = colorGold;
+        tx.font = "bold 13px 'Unbounded', sans-serif";
+        tx.textAlign = 'center';
+        tx.shadowBlur = 8;
+        tx.shadowColor = colorGold;
+        tx.fillText(tPopup.text, tc.width / 2, tc.height / 2 + riseY);
+        tx.restore();
+      }
+    }
+  }
   function draw() {
-    tx.clearRect(0, 0, tc.width, tc.height);
+    const now = performance.now();
+    tx.save();
+    if (tShakeUntil && now < tShakeUntil) {
+      const p = (tShakeUntil - now) / 180;
+      const mag = 3 * p;
+      tx.translate((Math.random() - 0.5) * mag * 2, (Math.random() - 0.5) * mag * 2);
+    }
+    tx.clearRect(-6, -6, tc.width + 12, tc.height + 12);
     drawBoard();
     drawPieceFn(tCurrent, 1);
+    drawEffects(now);
     if (tGameState === 'START') {
       tx.fillStyle = 'rgba(255,255,255,0.06)';
       tx.font = "bold 11px 'JetBrains Mono', monospace";
@@ -587,6 +665,7 @@ draw();
       tx.fillText('TOCA PARA REINICIAR', tc.width / 2, tc.height / 2 + 20);
       tx.textAlign = 'left';
     }
+    tx.restore();
   }
   function drop() {
     if (!isValid(tCurrent, tCurrent.x, tCurrent.y + 1)) {
@@ -604,6 +683,9 @@ draw();
     tGameState = 'PLAYING';
     tDropInterval = 600;
     tLastDrop = performance.now();
+    tEffects = [];
+    tPopup = null;
+    tShakeUntil = 0;
   }
   function tick(now) {
     if (tGameState !== 'PLAYING') return;
@@ -614,6 +696,21 @@ draw();
     draw();
     requestAnimationFrame(tick);
   }
+  function rotateCurrent() {
+    const rotated = rotate(tCurrent.matrix);
+    if (isValid(tCurrent, tCurrent.x, tCurrent.y, rotated)) tCurrent.matrix = rotated;
+  }
+  function initIdle() {
+    tBoard = createBoard();
+    tCurrent = randomPiece();
+    tNext = randomPiece();
+    tScore = 0;
+    tLines = 0;
+    tGameState = 'START';
+    tEffects = [];
+    tPopup = null;
+    tShakeUntil = 0;
+  }
   tc.addEventListener('click', () => {
     if (tGameState === 'START') {
       resetTetris();
@@ -621,6 +718,9 @@ draw();
     } else if (tGameState === 'GAMEOVER') {
       resetTetris();
       requestAnimationFrame(tick);
+    } else if (tGameState === 'PLAYING') {
+      // Click anywhere on the board (top or bottom half) rotates the piece clockwise.
+      rotateCurrent();
     }
   });
   document.getElementById('btnResetTetris').addEventListener('click', (e) => {
@@ -635,10 +735,9 @@ draw();
     } else if (e.key === 'ArrowRight') {
       if (isValid(tCurrent, tCurrent.x + 1, tCurrent.y)) tCurrent.x += 1;
     } else if (e.key === 'ArrowDown') {
-      drop();
+      rotateCurrent();
     } else if (e.key === 'ArrowUp') {
-      const rotated = rotate(tCurrent.matrix);
-      if (isValid(tCurrent, tCurrent.x, tCurrent.y, rotated)) tCurrent.matrix = rotated;
+      rotateCurrent();
     }
   });
   tc.addEventListener('touchstart', (e) => {
@@ -655,30 +754,23 @@ draw();
     const deltaY = endY - tSwipeStartY;
     if (tGameState === 'PLAYING') {
       if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe: move the piece left/right.
         if (deltaX > 0) {
           if (isValid(tCurrent, tCurrent.x + 1, tCurrent.y)) tCurrent.x += 1;
         } else {
           if (isValid(tCurrent, tCurrent.x - 1, tCurrent.y)) tCurrent.x -= 1;
         }
-      } else if (deltaY < -40) {
-        const rotated = rotate(tCurrent.matrix);
-        if (isValid(tCurrent, tCurrent.x, tCurrent.y, rotated)) tCurrent.matrix = rotated;
-      } else if (deltaY > 40) {
-        drop();
       } else {
-        const rect = tc.getBoundingClientRect();
-        if (endY - rect.top < rect.height / 2) {
-          const rotated = rotate(tCurrent.matrix);
-          if (isValid(tCurrent, tCurrent.x, tCurrent.y, rotated)) tCurrent.matrix = rotated;
-        } else {
-          drop();
-        }
+        // Any tap or vertical swipe (top or bottom half) rotates clockwise.
+        // "Tocar abajo para bajar" was removed on purpose.
+        rotateCurrent();
       }
+      e.preventDefault();
     }
     tSwipeStartX = null;
     tSwipeStartY = null;
   });
-  resetTetris();
+  initIdle();
   draw();
 })();
 
