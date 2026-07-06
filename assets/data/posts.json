@@ -1,5 +1,13 @@
 [
   {
+    "slug": "la-app-radio-comunitaria-el-brote-ya-esta-en-la-playstore",
+    "title": "La App Radio Comunitaria El Brote ya esta en la Playstore",
+    "excerpt": "¡Oficialmente en Google Play Store!\n\nLo que empezó como líneas de código en nuestra bitácora de desarrollo hoy ya es una realidad que cualquiera puede descargar. Nos entusiasma contarles que nuestra primera aplicación ya pasó los rigurosos filtros de Google y está online.",
+    "date": "2026-07-05",
+    "category": "dev",
+    "readMinutes": 2
+  },
+  {
     "slug": "por-que-vendemos-mvp-y-no-promesas",
     "title": "Por qué vendemos un MVP y no una promesa",
     "excerpt": "La lógica detrás del precio fijo y el código fuente incluido: menos alcance, más velocidad para validar si tu negocio realmente necesita esa app.",
