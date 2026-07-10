@@ -1,0 +1,112 @@
+/* =========================================================
+   NMFT STUDIO — PROYECTOS.CSS
+   Estilos para /proyectos.html: reutiliza el mismo sistema
+   visual que services.css (cargado antes que este archivo)
+   y suma el mockup de tablet vertical donde corren las apps
+   reales de cada proyecto, más el layout de las fichas.
+   ========================================================= */
+
+/* ================= HERO PROYECTOS ================= */
+.hero-proyectos { min-height: 62vh; padding-bottom: 40px; }
+
+/* ================= FICHA DE PROYECTO ================= */
+.project-block {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.project-block + .project-block { margin-top: 120px; }
+.project-block.reverse { grid-template-columns: 0.95fr 1fr; }
+.project-block.reverse .project-device-stage { order: 2; }
+.project-block.reverse .project-info { order: 1; }
+
+.project-info { max-width: 520px; }
+.project-info .tag {
+  display: inline-flex; align-items: center; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal);
+  background: rgba(63,167,160,0.12); border: 1px solid rgba(63,167,160,0.3);
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 18px;
+}
+.project-info h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 14px; }
+.project-info p.desc { color: var(--muted); font-size: 0.98rem; max-width: 50ch; margin-bottom: 22px; }
+
+.project-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.project-features li {
+  display: flex; align-items: flex-start; gap: 10px; color: var(--ink); font-size: 0.9rem;
+}
+.project-features li::before {
+  content: ''; flex-shrink: 0; width: 6px; height: 6px; margin-top: 7px; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 0 3px rgba(201,161,92,0.15);
+}
+
+.project-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px; }
+.project-hint { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.02em; }
+.project-hint b { color: var(--gold); }
+
+/* ================= TABLET VERTICAL (mockup con la app real adentro) ================= */
+.project-device-stage {
+  position: relative; display: flex; justify-content: center; align-items: center;
+  perspective: 1400px; padding: 20px 0;
+}
+.tablet-mock-v {
+  position: relative;
+  width: min(300px, 78vw);
+  height: min(632px, 128vw);
+  background: linear-gradient(160deg, #13171f, #07090c);
+  border-radius: 34px;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 40px 90px -24px rgba(0,0,0,0.85);
+  padding: 16px 12px;
+  animation: floatTabletV 8s ease-in-out infinite;
+  transition: transform .15s ease-out;
+}
+@keyframes floatTabletV {
+  0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+  50% { transform: translateY(-14px) rotate(0.6deg); }
+}
+.tablet-v-cam {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  width: 7px; height: 7px; border-radius: 50%; background: #000;
+  box-shadow: inset 0 0 2px rgba(255,255,255,0.15); z-index: 10;
+}
+.tablet-v-screen {
+  position: relative; width: 100%; height: 100%; border-radius: 22px; overflow: hidden;
+  background: #05070a; border: 1px solid rgba(255,255,255,0.05);
+}
+.tablet-v-screen iframe { display: block; width: 100%; height: 100%; border: 0; background: #05070a; }
+.tablet-v-home {
+  position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+  width: 76px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.15); z-index: 10;
+}
+.project-badge {
+  position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+  background: var(--panel-solid); border: 1px solid var(--line); padding: 8px 14px; border-radius: 10px;
+  font-size: 11px; color: var(--ink); display: flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace; white-space: nowrap; z-index: 15;
+}
+.project-badge .live-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--fluor);
+  box-shadow: 0 0 0 3px var(--fluor-dim); animation: pulse-live 1.6s infinite alternate;
+}
+@keyframes pulse-live { 0% { opacity: .5; } 100% { opacity: 1; } }
+
+/* ================= PRÓXIMAMENTE ================= */
+.project-coming {
+  margin-top: 90px; text-align: center; padding: 48px 24px; border: 1px dashed var(--line-strong);
+  border-radius: 8px; max-width: 640px; margin-left: auto; margin-right: auto;
+}
+.project-coming .eyebrow { justify-content: center; margin-bottom: 10px; }
+.project-coming p { color: var(--muted); font-size: 0.95rem; }
+
+@media (max-width: 900px) {
+  .project-block, .project-block.reverse { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .project-block.reverse .project-device-stage, .project-block.reverse .project-info { order: 0; }
+  .project-info { max-width: 520px; }
+  .project-features { align-items: center; }
+  .project-features li { text-align: left; }
+  .project-actions { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tablet-mock-v { animation: none !important; }
+}

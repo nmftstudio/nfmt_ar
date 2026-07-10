@@ -131,6 +131,8 @@ header {
 .blog-meta { display: flex; flex-direction: column; gap: 6px; }
 .blog-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em; }
 .blog-item h3 { font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 500; }
+/* Honeypot anti-spam: oculto para personas, visible para bots que auto-completan campos */
+.hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-group { margin-bottom: 18px; }
 .form-group label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; color: var(--muted); }
 .form-control { width: 100%; background: var(--bg); border: 1px solid var(--line); padding: 13px; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 0.92rem; border-radius: 2px; transition: border-color .2s; }

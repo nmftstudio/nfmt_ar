@@ -190,10 +190,11 @@ revealEls.forEach(el => observer.observe(el));
       name: document.getElementById('name').value.trim(),
       email: document.getElementById('email').value.trim(),
       projectType: (document.querySelector('input[name="projectType"]:checked') || {}).value || '',
-      msg: document.getElementById('msg').value.trim()
+      msg: document.getElementById('msg').value.trim(),
+      website: (document.getElementById('website') || {}).value || ''
     };
 
-    fetch('/mail.php', {
+    fetch('/assets/php/mail.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)

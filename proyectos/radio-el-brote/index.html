@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Radio Comunitaria El Brote 90.3 FM - Comunicación Popular desde Villa Ciudad Parque">
+    <meta name="keywords" content="radio comunitaria, el brote, 90.3 FM, Villa Ciudad Parque, comunicación popular, radio online">
+    <meta name="author" content="nmftSTUDIO">
+    <meta name="theme-color" content="#d32f2f">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elbrote.org/">
+    <meta property="og:title" content="Radio Comunitaria El Brote - 90.3 FM">
+    <meta property="og:description" content="Escuchá Radio El Brote en vivo. Comunicación Popular desde Villa Ciudad Parque">
+    <meta property="og:image" content="https://elbrote.org/wp-content/uploads/2025/08/radio-comunitaria-elbrote-3.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://elbrote.org/">
+    <meta property="twitter:title" content="Radio Comunitaria El Brote - 90.3 FM">
+    <meta property="twitter:description" content="Escuchá Radio El Brote en vivo. Comunicación Popular">
+    <meta property="twitter:image" content="https://elbrote.org/wp-content/uploads/2025/08/radio-comunitaria-elbrote-3.png">
+
+    <title>Radio Comunitaria El Brote - 90.3 FM</title>
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <audio id="radio-stream" preload="none" crossorigin="anonymous">
+        <source src="https://radios.solumedia.com:6260/stream" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <canvas id="particles"></canvas>
+    <div class="vintage-overlay"></div>
+
+    <header>
+        <div class="logo-area">
+            <div class="logo-container">
+                <a href="https://elbrote.org/" target="_blank" rel="noopener noreferrer"
+                   style="text-decoration:none;display:block;background:transparent;">
+                    <img src="LOGO.png" alt="Radio Comunitaria El Brote" class="logo-image" onerror="this.style.display='none'">
+                </a>
+            </div>
+        </div>
+        <div class="header-buttons">
+            <button id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="settings-btn" aria-label="Configuración" title="Configuración">
+                <i class="fas fa-cog"></i>
+            </button>
+            <button id="menu-btn" aria-label="Menu" title="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Indicador de conexión -->
+    <div class="connection-indicator" id="connection-indicator">
+        <div class="connection-dot" id="connection-dot"></div>
+        <div class="connection-text">
+            <div class="connection-status" id="connection-status">Conectando...</div>
+            <div class="connection-stats" id="connection-stats">Cargando...</div>
+            <div class="buffer-indicator">
+                <div class="buffer-fill" id="buffer-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <main id="radio-container">
+        <div class="radio-case">
+            <div class="handle">
+                <div class="logo-badge">El Brote 90.3 fm</div>
+            </div>
+            <div class="speaker-grill">
+                <div class="mesh"></div>
+            </div>
+            <div class="control-panel">
+                <div class="visualizer-display">
+                    <canvas id="visualizer"></canvas>
+                    <div class="visualizer-overlay">
+                        <div class="frequency-label">90.3 FM</div>
+                    </div>
+                    <div class="on-light" id="on-light"></div>
+                </div>
+                <div class="knobs">
+                    <div class="knob-group">
+                        <label>VOLUMEN</label>
+                        <div class="knob" id="volume-knob">
+                            <div class="marker"></div>
+                            <div class="knob-center"></div>
+                        </div>
+                        <div class="volume-indicator">
+                            <div class="volume-bar" id="volume-bar"></div>
+                        </div>
+                    </div>
+                    <div class="switch-group">
+                        <label>ENCENDIDO</label>
+                        <div class="toggle-switch" id="power-switch">
+                            <div class="switch-lever"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <a href="https://elbrote.org/suscripcion" target="_blank">★ SUSCRIBITE A RADIO EL BROTE ★ APOYÁ LA COMUNICACIÓN POPULAR ★</a>
+            <a href="https://elbrote.org/suscripcion" target="_blank">★ SUSCRIBITE A RADIO EL BROTE ★ APOYÁ LA COMUNICACIÓN POPULAR ★</a>
+            <a href="https://elbrote.org/suscripcion" target="_blank">★ SUSCRIBITE A RADIO EL BROTE ★ APOYÁ LA COMUNICACIÓN POPULAR ★</a>
+        </div>
+    </div>
+
+    <!-- Menú overlay -->
+    <nav id="menu-overlay" class="hidden">
+        <button id="close-menu" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+        <ul>
+            <li><a href="https://elbrote.org/portal-de-noticias/" target="_blank" class="nav-item">NOTICIAS</a></li>
+            <li><a href="https://elbrote.org/grilla-programacion/" target="_blank" class="nav-item">GRILLA</a></li>
+            <li><a href="https://elbrote.org/podcasts/" target="_blank" class="nav-item">PODCAST</a></li>
+            <li><a href="https://elbrote.org/publicidad/" target="_blank" class="nav-item">PUBLICIDAD</a></li>
+            <li class="social-links">
+                <a href="https://www.instagram.com/radiocomunitariaelbrote" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/RadioComunitariaElBrote" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.youtube.com/@RadioComunitariaElBrote" target="_blank" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </li>
+            <li class="menu-semilla-logo">
+                <a href="https://elbrote.org/semilla-del-sur/" target="_blank" rel="noopener noreferrer" aria-label="Semilla del Sur">
+                    <img src="logo-semilla.png" alt="Semilla del Sur" class="semilla-logo-img">
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Panel de configuración -->
+    <aside id="settings-panel">
+        <button id="close-settings" aria-label="Cerrar configuración">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2>⚙️ Configuración</h2>
+
+        <div class="settings-group">
+            <label for="visualizer-mode">Modo de Visualización</label>
+            <select id="visualizer-mode">
+                <option value="bars">Barras</option>
+                <option value="wave">Onda</option>
+                <option value="circular">Circular</option>
+            </select>
+        </div>
+
+        <div class="settings-group">
+            <label>Tema de Color</label>
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="theme-checkbox">
+                <span>Modo Claro</span>
+            </div>
+        </div>
+
+        <div class="settings-group" style="margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);">
+            <p style="color:#999;font-size:0.9rem;text-align:center;">
+                Radio Comunitaria El Brote<br>90.3 FM<br>Versión 2.0.0
+            </p>
+            <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer" class="privacy-link">
+                <i class="fas fa-shield-alt"></i> Política de Privacidad
+            </a>
+        </div>
+
+        <!-- Firma nmftSTUDIO -->
+        <div class="nmft-signature">
+            <a href="https://nmftstudio.great-site.net" target="_blank" rel="noopener noreferrer" class="nmft-link">
+                <span class="nmft-text">nmft<strong>STUDIO</strong></span>
+            </a>
+            <p class="nmft-sub">Diseño &amp; Desarrollo</p>
+        </div>
+    </aside>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/543546532523" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Botón del juego (bottom-left) -->
+    <button id="game-btn" class="game-float-btn" aria-label="Jugar Radio Runner" title="🎮 Radio Runner">
+        🎮
+    </button>
+
+    <!-- Modal del juego -->
+    <div id="game-modal" class="game-modal">
+        <div class="game-modal-inner">
+            <div class="game-modal-header">
+                <span class="game-modal-title">📻 RADIO RUNNER</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <button id="game-mute-btn" class="game-mute-btn" aria-label="Silenciar juego" title="Silenciar sonidos del juego">
+                        🔊
+                    </button>
+                    <button id="close-game" class="game-close-btn" aria-label="Cerrar juego">✕</button>
+                </div>
+            </div>
+            <canvas id="game-canvas" width="480" height="220"></canvas>
+            <div class="game-hint">
+                ⬆ ESPACIO para saltar &nbsp;·&nbsp; Tocar en móvil &nbsp;·&nbsp; 🎵 Lo-Fi Music
+            </div>
+        </div>
+    </div>
+
+    <!-- game.js DEBE ir antes que app.js -->
+    <script src="game.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

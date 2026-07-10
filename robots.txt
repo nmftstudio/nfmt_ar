@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /assets/php/
+Disallow: /admin.html
+Disallow: /admin-server.js
+
+Sitemap: https://nmft.ar/sitemap.xml
