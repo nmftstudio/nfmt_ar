@@ -58,6 +58,7 @@
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
+      "addressLocality": "Villa Ciudad Parque, Calamuchita",
       "addressRegion": "Córdoba",
       "addressCountry": "AR"
     },
@@ -67,7 +68,8 @@
     ],
     "sameAs": [
       "https://wa.me/5493546530511",
-      "https://github.com/nmftstudio/"
+      "https://github.com/nmftstudio/",
+      "https://share.google/ysMjfzw0RN9LTxA7w"
     ],
     "makesOffer": [
       {
@@ -99,6 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="glow g1"></div>
     <div class="glow g2"></div>
   </div>
+  <div class="hero-wash" id="heroWash"></div>
 
   <header>
     <a class="logo" href="/"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</a>
@@ -106,8 +109,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <nav class="header-links">
         <a href="/">Inicio</a>
         <a href="/proyectos.html">Proyectos</a>
-        <a href="/servicios-express.html">Servicios Express</a>
-        <a href="/consultoria-tecnica.html" class="active">Consultoría Técnica</a>
+        <div class="nav-dropdown">
+          <a href="/consultoria-tecnica.html" class="nav-dropdown-trigger active">Consultoría <span class="nav-caret">▾</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/consultoria-tecnica.html">Consultoría Técnica</a>
+            <a href="/servicios-express.html">Servicios Express</a>
+            <a href="/promo-app.html">Promo App</a>
+          </div>
+        </div>
+        <a href="/blog/">Blog</a>
+        <a href="#contacto">Contacto</a>
       </nav>
       <a class="btn solid" data-wa-cta href="#" target="_blank" rel="noopener">Escribinos</a>
     </div>
@@ -323,6 +334,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer>
     <div class="wrap footer-inner">
       <p>© <span id="year"></span> NMFT STUDIO — Calamuchita, Córdoba</p>
+      <p class="footer-address" itemprop="address">Villa Ciudad Parque, Calamuchita, Córdoba, Argentina</p>
       <div class="footer-social">
         <a href="https://wa.me/5493546530511" class="social-link" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18l1-3.4A7.5 7.5 0 1 1 10 17l-4 1z"/><path d="M9.2 9.6c.2 2.2 2 4 4.2 4.2"/></svg>
@@ -332,6 +344,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 5c1.2-.8 2.6-1.2 4-1.2s2.8.4 4 1.2"/><path d="M6.5 15c-2-.3-3-1.8-3-3.6 0-3.8 3.8-6.4 8.5-6.4s8.5 2.6 8.5 6.4c0 1.8-1 3.3-3 3.6"/></svg>
           <span>GitHub</span>
         </a>
+        <a href="https://share.google/ysMjfzw0RN9LTxA7w" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+          <span>Google Business</span>
+        </a>
       </div>
       <p>Hecho en Argentina</p>
     </div>
@@ -339,6 +355,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script src="/assets/js/services.js"></script>
   <script src="/assets/js/cosmos-fx.js"></script>
+
+  <script>
+  // Hero color wash — fade on scroll
+  (function () {
+    const wash = document.getElementById('heroWash');
+    if (!wash) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          wash.classList.toggle('faded', window.scrollY > window.innerHeight * 0.6);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+  </script>
 
   <!-- Cal.com — agenda de la Sesión de Diagnóstico -->
   <script type="text/javascript">

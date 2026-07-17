@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5XL3MFXX');</script>
+<!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Por qué elegimos no usar build tools — NMFT STUDIO</title>
+  <meta name="description" content="Por qué en NMFT laburamos con HTML, CSS y JS vanilla en vez de sumar Webpack, Vite o frameworks pesados, y qué ganamos con eso.">
+  <link rel="canonical" href="https://nmft.ar/blog/posts/por-que-no-usamos-build-tools.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="NMFT STUDIO">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:url" content="https://nmft.ar/blog/posts/por-que-no-usamos-build-tools.html">
+  <meta property="og:title" content="Por qué elegimos no usar build tools — NMFT STUDIO">
+  <meta property="og:description" content="Por qué en NMFT laburamos con HTML, CSS y JS vanilla en vez de sumar Webpack, Vite o frameworks pesados, y qué ganamos con eso.">
+  <meta property="og:image" content="https://nmft.ar/assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="NMFT STUDIO — Desarrollo de Apps & Diseño Web">
+  <meta property="article:published_time" content="2026-07-08">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Por qué elegimos no usar build tools — NMFT STUDIO">
+  <meta name="twitter:description" content="Por qué en NMFT laburamos con HTML, CSS y JS vanilla en vez de sumar Webpack, Vite o frameworks pesados, y qué ganamos con eso.">
+  <meta name="twitter:image" content="https://nmft.ar/assets/img/og-cover.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/img/favicon/site.webmanifest">
+  <meta name="theme-color" content="#05070a">
+
+
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/blog.css">
+  <link rel="stylesheet" href="/assets/css/cosmos-fx.css">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XL3MFXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="cosmos">
+    <div class="stars" id="stars"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+
+  <header>
+    <a href="/" class="logo"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</a>
+    <div class="header-nav">
+      <nav class="header-links">
+        <a href="/proyectos.html">Proyectos</a>
+        <a href="/#promo">Promo App</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/#contacto">Contacto</a>
+      </nav>
+      <a class="btn solid" href="/#contacto">Escribinos</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="post-hero">
+      <a href="/blog/" class="back-link mono">← Volver al blog</a>
+      <div class="meta-row">
+        <span class="cat-chip cat-tech">Tech</span>
+        <span class="post-date mono">08 jul 2026 · 4 min de lectura</span>
+      </div>
+      <h1>Por qué elegimos no usar build tools</h1>
+      <p class="lead">Nada de Webpack, Vite ni frameworks pesados. HTML, CSS y JS vanilla, con dependencias por CDN. Así laburamos la mayoría de nuestros proyectos, y no es por vagos.</p>
+    </section>
+
+    <section style="padding-top: 0;">
+      <article class="post-body">
+        <figure>
+          <img src="/assets/img/blog/build-tools-hero.svg" alt="Diagrama: HTML, CSS y JS yendo directo al navegador sin bundler" width="1200" height="630" loading="lazy">
+          <figcaption>Sin paso de build: lo que escribís es lo que se sube al servidor.</figcaption>
+        </figure>
+
+        <p>Cuando contás que no usás build tools, la reacción típica en el mundo dev es de sorpresa, casi de sospecha. ¿Cómo vas a laburar sin bundler, sin transpilador, sin un pipeline de CI que compile todo antes de subirlo? La respuesta corta: para la mayoría de nuestros clientes, esas herramientas resuelven un problema que no tienen.</p>
+
+        <h2>El contexto real de nuestros proyectos</h2>
+        <p>Trabajamos con negocios locales: bares, radios, comercios, estudios chicos. Sitios que se despliegan por FTP o cPanel, en hostings compartidos, sin acceso a terminal ni a un pipeline de deploy automatizado. En ese contexto, un proyecto armado con Webpack o Vite agrega una capa entera de complejidad que nadie del otro lado va a poder tocar ni mantener si nosotros no estamos.</p>
+
+        <p>Con HTML, CSS y JS plano, lo que ves en el editor es exactamente lo que se sube al servidor. No hay paso de build que pueda romperse, no hay node_modules que versionar, no hay que explicarle a un cliente por qué de repente el sitio no compila.</p>
+
+        <h2>Deploys sin fricción</h2>
+        <p>Subir un cambio es literalmente arrastrar un archivo por FTP o pegarlo en el file manager de cPanel. Eso significa que un ajuste chico —cambiar un texto, un precio, una imagen— se resuelve en minutos, sin depender de que ande un pipeline, sin esperar un build en la nube.</p>
+
+        <p>Para dependencias externas, usamos CDN en vez de instalar paquetes: Tone.js, MediaPipe, lo que haga falta, se carga directo desde un script tag. Es la misma lógica: menos capas entre el código y lo que efectivamente corre en el navegador del usuario.</p>
+
+        <h2>No es una limitación, es una elección</h2>
+        <p>Sabemos usar frameworks y herramientas de build, y cuando un proyecto realmente lo justifica —una app compleja, con estado difícil de manejar a mano, con un equipo grande trabajando en paralelo— las usamos sin problema. Pero para la mayoría de los sitios y productos que vendemos, vanilla es la opción más rápida de construir, más fácil de mantener y más barata de operar.</p>
+
+        <blockquote>La herramienta correcta no es la más nueva. Es la que tu cliente puede sostener después de que te vayas.</blockquote>
+
+        <p>Esa es la lógica que nos guía: menos dependencias, menos puntos de falla, más control real para quien se queda con el sitio.</p>
+      </article>
+
+      <div class="post-footer-nav">
+        <a href="/blog/" class="btn mono">← Todos los posts</a>
+        <a href="/#contacto" class="btn solid fluor mono">Contanos tu idea</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> NMFT STUDIO — Calamuchita, Córdoba</p>
+      <p class="footer-address" itemprop="address">Villa Ciudad Parque, Calamuchita, Córdoba, Argentina · <a href="https://share.google/ysMjfzw0RN9LTxA7w" target="_blank" rel="noopener">Google Business</a></p>
+      <p>Hecho en Argentina</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/cosmos-fx.js"></script>
+</body>
+</html>

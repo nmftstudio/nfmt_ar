@@ -1,5 +1,45 @@
 [
   {
+    "slug": "camara-clara",
+    "title": "Cámara clara: un instrumento óptico, hecho software",
+    "excerpt": "En 1806, Wollaston llamó \"cámara lúcida\" a un instrumento que superponía una imagen sobre el mundo real para poder calcarla a mano. Esto es lo mismo, hecho de otra forma.",
+    "date": "2026-07-17",
+    "category": "arte",
+    "readMinutes": 3
+  },
+  {
+    "slug": "marimar-costura-creativa",
+    "title": "MariMar Costura Creativa: una tienda a medida para un oficio a medida",
+    "excerpt": "Bordados, reutilizables, juegos de tela y accesorios hechos a mano en el Valle de Calamuchita, ahora con catálogo, carrito y venta online propios.",
+    "date": "2026-07-15",
+    "category": "soluciones",
+    "readMinutes": 4
+  },
+  {
+    "slug": "como-hackeamos-gestos-en-el-navegador",
+    "title": "Cómo hackeamos gestos en el navegador",
+    "excerpt": "La posta de cómo armamos GESTOSYNTH, un synth que se controla con las manos, corriendo 100% en el navegador.",
+    "date": "2026-07-12",
+    "category": "dev",
+    "readMinutes": 5
+  },
+  {
+    "slug": "menu-digital-el-jabali-blanco",
+    "title": "Menú digital para bares: el caso El Jabalí Blanco",
+    "excerpt": "Un MVP de menú digital pensado para venderse una y otra vez a comercios de la zona, sin depender de terceros ni de mensualidades ajenas.",
+    "date": "2026-07-10",
+    "category": "soluciones",
+    "readMinutes": 4
+  },
+  {
+    "slug": "por-que-no-usamos-build-tools",
+    "title": "Por qué elegimos no usar build tools",
+    "excerpt": "Nada de Webpack, Vite ni frameworks pesados. HTML, CSS y JS vanilla, con dependencias por CDN. Así laburamos la mayoría de nuestros proyectos.",
+    "date": "2026-07-08",
+    "category": "tech",
+    "readMinutes": 4
+  },
+  {
     "slug": "la-app-radio-comunitaria-el-brote-ya-esta-en-la-playstore",
     "title": "La App Radio Comunitaria El Brote ya esta en la Playstore",
     "excerpt": "¡Oficialmente en Google Play Store! Lo que empezó como líneas de código en nuestra bitácora de desarrollo hoy ya es una realidad que cualquiera puede descargar. Nos entusiasma contarles que nuestra primera aplicación ya pasó los rigurosos filtros de Google y está online.",

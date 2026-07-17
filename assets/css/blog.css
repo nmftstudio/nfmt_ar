@@ -75,6 +75,16 @@
 .post-body hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
 .post-body figure { margin-top: 22px; }
 .post-body figcaption { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 8px; }
+.post-body figure img { width: 100%; height: auto; display: block; border-radius: 6px; border: 1px solid var(--line); }
+.post-body .app-link-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  margin-top: 8px; padding: 16px 20px; border: 1px solid var(--line-strong);
+  border-radius: 6px; background: var(--panel-solid); text-decoration: none;
+}
+.post-body .app-link-card:hover { border-color: var(--gold); }
+.post-body .app-link-card .label { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.post-body .app-link-card .url { color: var(--ink); font-weight: 600; margin-top: 4px; display: block; }
+.post-body .app-link-card .arrow { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; flex-shrink: 0; }
 
 .post-footer-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--line); flex-wrap: wrap; gap: 16px; }
 

@@ -806,3 +806,21 @@ draw();
     if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
   });
 })();
+
+// ============= HERO COLOR WASH — fade on scroll =============
+(function () {
+  const wash = document.getElementById('heroWash');
+  if (!wash) return;
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        // Comienza a desvanecerse a partir de 60% del viewport de altura
+        const threshold = window.innerHeight * 0.6;
+        wash.classList.toggle('faded', window.scrollY > threshold);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();

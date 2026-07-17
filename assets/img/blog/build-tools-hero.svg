@@ -1,0 +1,67 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1116"/>
+      <stop offset="100%" stop-color="#05070a"/>
+    </linearGradient>
+    <filter id="glow3" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGrad3)"/>
+
+  <!-- file icons: HTML / CSS / JS -->
+  <g font-family="'JetBrains Mono', monospace" font-size="15" font-weight="700">
+    <g transform="translate(120,240)">
+      <rect width="130" height="150" rx="4" fill="#0b0f13" stroke="rgba(63,167,160,0.4)" stroke-width="2"/>
+      <path d="M0,0 L100,0 L130,30 L130,150 L0,150 Z" fill="none" stroke="rgba(63,167,160,0.4)" stroke-width="2"/>
+      <path d="M100,0 L100,30 L130,30" fill="none" stroke="rgba(63,167,160,0.4)" stroke-width="2"/>
+      <text x="24" y="90" fill="#3fa7a0">HTML</text>
+    </g>
+    <g transform="translate(280,240)">
+      <rect width="130" height="150" rx="4" fill="#0b0f13" stroke="rgba(201,161,92,0.4)" stroke-width="2"/>
+      <path d="M100,0 L100,30 L130,30" fill="none" stroke="rgba(201,161,92,0.4)" stroke-width="2"/>
+      <text x="30" y="90" fill="#c9a15c">CSS</text>
+    </g>
+    <g transform="translate(440,240)">
+      <rect width="130" height="150" rx="4" fill="#0b0f13" stroke="rgba(255,79,160,0.4)" stroke-width="2"/>
+      <path d="M100,0 L100,30 L130,30" fill="none" stroke="rgba(255,79,160,0.4)" stroke-width="2"/>
+      <text x="38" y="90" fill="#ff4fa0">JS</text>
+    </g>
+  </g>
+
+  <!-- crossed-out bundler box -->
+  <g transform="translate(660,150)">
+    <rect x="0" y="0" width="220" height="90" rx="6" fill="#0b0f13" stroke="rgba(147,155,165,0.3)" stroke-width="2" stroke-dasharray="6 6"/>
+    <text x="26" y="38" font-family="'JetBrains Mono', monospace" font-size="15" fill="#939ba5">bundler</text>
+    <text x="26" y="60" font-family="'JetBrains Mono', monospace" font-size="15" fill="#939ba5">build step</text>
+    <line x1="6" y1="6" x2="214" y2="84" stroke="#ff4fa0" stroke-width="3" opacity="0.8"/>
+    <line x1="214" y1="6" x2="6" y2="84" stroke="#ff4fa0" stroke-width="3" opacity="0.8"/>
+  </g>
+
+  <!-- arrow straight to browser -->
+  <g stroke="#3fa7a0" stroke-width="2.5" fill="none" filter="url(#glow3)">
+    <line x1="600" y1="315" x2="900" y2="315"/>
+    <path d="M885,300 L900,315 L885,330"/>
+  </g>
+
+  <!-- browser window icon -->
+  <g transform="translate(920,230)">
+    <rect width="220" height="160" rx="8" fill="#0b0f13" stroke="rgba(237,238,240,0.14)" stroke-width="2"/>
+    <rect width="220" height="28" rx="8" fill="#12161c"/>
+    <circle cx="18" cy="14" r="4" fill="#ff4fa0" opacity="0.7"/>
+    <circle cx="34" cy="14" r="4" fill="#c9a15c" opacity="0.7"/>
+    <circle cx="50" cy="14" r="4" fill="#3fa7a0" opacity="0.7"/>
+    <rect x="20" y="50" width="180" height="10" rx="2" fill="rgba(237,238,240,0.12)"/>
+    <rect x="20" y="72" width="140" height="10" rx="2" fill="rgba(237,238,240,0.08)"/>
+    <rect x="20" y="94" width="160" height="10" rx="2" fill="rgba(237,238,240,0.08)"/>
+    <rect x="20" y="120" width="90" height="24" rx="4" fill="rgba(201,161,92,0.25)" stroke="rgba(201,161,92,0.5)"/>
+  </g>
+
+  <text x="120" y="470" font-family="'JetBrains Mono', monospace" font-size="14" letter-spacing="2" fill="#939ba5">SIN WEBPACK · SIN VITE · DEPLOY POR FTP</text>
+</svg>

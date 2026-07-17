@@ -58,13 +58,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="glow g1"></div>
     <div class="glow g2"></div>
   </div>
+  <div class="hero-wash" id="heroWash"></div>
 
   <header>
     <a href="/" class="logo"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</a>
     <div class="header-nav">
       <nav class="header-links">
         <a href="/proyectos.html">Proyectos</a>
-        <a href="/#promo">Promo App</a>
+        <div class="nav-dropdown">
+          <a href="/consultoria-tecnica.html" class="nav-dropdown-trigger">Consultoría <span class="nav-caret">▾</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/consultoria-tecnica.html">Consultoría Técnica</a>
+            <a href="/servicios-express.html">Servicios Express</a>
+            <a href="/promo-app.html">Promo App</a>
+          </div>
+        </div>
         <a href="/blog/" class="active">Blog</a>
         <a href="/#contacto">Contacto</a>
       </nav>
@@ -98,12 +106,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer>
     <div class="wrap footer-inner">
       <p>© <span id="year"></span> NMFT STUDIO — Calamuchita, Córdoba</p>
+      <p class="footer-address" itemprop="address">Villa Ciudad Parque, Calamuchita, Córdoba, Argentina · <a href="https://share.google/ysMjfzw0RN9LTxA7w" target="_blank" rel="noopener">Google Business</a></p>
       <p>Hecho en Argentina</p>
     </div>
   </footer>
 
   <script src="/assets/js/site.js"></script>
   <script src="/assets/js/cosmos-fx.js"></script>
+  <script>
+  // Hero color wash — fade on scroll
+  (function () {
+    const wash = document.getElementById('heroWash');
+    if (!wash) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          wash.classList.toggle('faded', window.scrollY > window.innerHeight * 0.6);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+  </script>
   <script>
     const CATEGORY_LABEL = {
       dev: 'Dev', tech: 'Tech', soluciones: 'Soluciones', media: 'Media', arte: 'Arte'

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5XL3MFXX');</script>
+<!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo hackeamos gestos en el navegador — NMFT STUDIO</title>
+  <meta name="description" content="La posta de cómo armamos GESTOSYNTH, un synth que se controla con las manos, corriendo 100% en el navegador.">
+  <link rel="canonical" href="https://nmft.ar/blog/posts/como-hackeamos-gestos-en-el-navegador.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="NMFT STUDIO">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:url" content="https://nmft.ar/blog/posts/como-hackeamos-gestos-en-el-navegador.html">
+  <meta property="og:title" content="Cómo hackeamos gestos en el navegador — NMFT STUDIO">
+  <meta property="og:description" content="La posta de cómo armamos GESTOSYNTH, un synth que se controla con las manos, corriendo 100% en el navegador.">
+  <meta property="og:image" content="https://nmft.ar/assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="NMFT STUDIO — Desarrollo de Apps & Diseño Web">
+  <meta property="article:published_time" content="2026-07-12">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cómo hackeamos gestos en el navegador — NMFT STUDIO">
+  <meta name="twitter:description" content="La posta de cómo armamos GESTOSYNTH, un synth que se controla con las manos, corriendo 100% en el navegador.">
+  <meta name="twitter:image" content="https://nmft.ar/assets/img/og-cover.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/img/favicon/site.webmanifest">
+  <meta name="theme-color" content="#05070a">
+
+
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/blog.css">
+  <link rel="stylesheet" href="/assets/css/cosmos-fx.css">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XL3MFXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="cosmos">
+    <div class="stars" id="stars"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+
+  <header>
+    <a href="/" class="logo"><span class="dot"></span><span class="upper">NMFT</span>&nbsp;STUDIO</a>
+    <div class="header-nav">
+      <nav class="header-links">
+        <a href="/proyectos.html">Proyectos</a>
+        <a href="/#promo">Promo App</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/#contacto">Contacto</a>
+      </nav>
+      <a class="btn solid" href="/#contacto">Escribinos</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="post-hero">
+      <a href="/blog/" class="back-link mono">← Volver al blog</a>
+      <div class="meta-row">
+        <span class="cat-chip cat-dev">Dev</span>
+        <span class="post-date mono">12 jul 2026 · 5 min de lectura</span>
+      </div>
+      <h1>Cómo hackeamos gestos en el navegador</h1>
+      <p class="lead">La posta de cómo armamos GESTOSYNTH, un sintetizador que se controla moviendo las manos frente a una cámara, sin instalar nada.</p>
+    </section>
+
+    <section style="padding-top: 0;">
+      <article class="post-body">
+        <figure>
+          <img src="/assets/img/blog/gestosynth-hero.svg" alt="Panel de GESTOSYNTH con knobs, VFD y tracking de mano" width="1200" height="630" loading="lazy">
+          <figcaption>Estética synth soviético/alemán + tracking de mano en tiempo real.</figcaption>
+        </figure>
+
+        <a class="app-link-card" href="https://nmftstudio.github.io/gestosynth/" target="_blank" rel="noopener">
+          <span>
+            <span class="label">Probalo en vivo</span>
+            <span class="url">nmftstudio.github.io/gestosynth</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <p>Hace un tiempo nos preguntamos algo simple: ¿se puede tocar un sintetizador sin tocar nada? Sin MIDI, sin knobs físicos, sin plugins raros. Solo una cámara, un navegador, y las manos en el aire.</p>
+
+        <p>Así arrancó GESTOSYNTH.</p>
+
+        <h2>La idea</h2>
+        <p>Un synth gestual que corre entero en el cliente. Nada de instalar apps, nada de drivers. Abrís el navegador, le das permiso a la cámara, y listo: mover las manos genera sonido.</p>
+
+        <p>El desafío no era tanto "que suene", sino que la latencia entre gesto y respuesta se sintiera instantánea. Si hay delay, deja de ser un instrumento y pasa a ser una demo.</p>
+
+        <h2>El motor de tracking: MediaPipe</h2>
+        <p>Usamos MediaPipe Hands para detectar la posición de los dedos en tiempo real, y sumamos Face Mesh para agregar una segunda capa de control gestual usando la cara. La combinación de las dos fuentes de tracking nos dio suficientes "perillas invisibles" como para mapear parámetros reales del synth: distancia entre dedos para el filtro, altura de la mano para el pitch, apertura de la palma para la modulación.</p>
+
+        <p>Lo interesante de MediaPipe corriendo del lado del cliente es que no hay ida y vuelta a un servidor. Todo el procesamiento de video y la inferencia del modelo pasa en la máquina del usuario, así que la latencia queda atada solo al hardware de quien lo usa, no a una API externa.</p>
+
+        <h2>El sonido: Tone.js</h2>
+        <p>Para la parte de audio fuimos con Tone.js, que nos dio el motor de síntesis y el scheduling preciso que necesitábamos para que los gestos se tradujeran en algo musicalmente coherente y no en ruido random. Ahí mapeamos cada gesto detectado por MediaPipe a un parámetro del synth: osciladores, filtros, envolventes.</p>
+
+        <p>La parte más laboriosa fue afinar la sensibilidad. Un gesto muy reactivo se siente nervioso y poco musical; uno muy suavizado se siente con delay. Terminamos metiendo un suavizado sobre los valores crudos del tracking antes de mandarlos a Tone.js, para que el sonido respondiera de forma más orgánica.</p>
+
+        <h2>El rediseño visual: del lab al hardware soviético</h2>
+        <p>Una vez que el motor andaba, encaramos un rediseño visual completo. La referencia: sintetizadores analógicos soviéticos y alemanes de los 70 y 80. Ese lenguaje de hardware real, gastado, funcional.</p>
+
+        <p>Algunos de los elementos que sumamos: knobs rotativos con feedback visual real al girarlos, switches tipo rocker con luz ámbar como los interruptores de equipos de laboratorio viejos, pantallas VFD simulando los displays de fósforo vintage, un piano chiclet estilo combo-organ, y un fondo ambiental de motas de polvo cálidas para que la interfaz se sienta como un cuarto con luz de tarde, no como una app fría.</p>
+
+        <p>Para la tipografía elegimos Big Shoulders Stencil para los títulos con onda industrial, Oswald para texto general, y JetBrains Mono para todo lo que simula lecturas técnicas — coherente con esa estética de instrumento de laboratorio.</p>
+
+        <blockquote>Meter tracking gestual y síntesis de audio en el mismo hilo del navegador obliga a pensar en performance todo el tiempo.</blockquote>
+
+        <p>Cada frame de video procesado compite por recursos con el audio en tiempo real, así que hubo que perfilar bastante y ser cuidadosos con cuánto trabajo le pedíamos al hilo principal. Pero el resultado vale la pena: un instrumento que no necesita nada más que una cámara y un navegador, y que se siente — al menos por un rato — como estar frente a una consola real.</p>
+      </article>
+
+      <div class="post-footer-nav">
+        <a href="/blog/" class="btn mono">← Todos los posts</a>
+        <a href="/#contacto" class="btn solid fluor mono">Contanos tu idea</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> NMFT STUDIO — Calamuchita, Córdoba</p>
+      <p class="footer-address" itemprop="address">Villa Ciudad Parque, Calamuchita, Córdoba, Argentina · <a href="https://share.google/ysMjfzw0RN9LTxA7w" target="_blank" rel="noopener">Google Business</a></p>
+      <p>Hecho en Argentina</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/cosmos-fx.js"></script>
+</body>
+</html>

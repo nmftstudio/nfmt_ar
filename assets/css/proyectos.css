@@ -51,8 +51,8 @@
 }
 .tablet-mock-v {
   position: relative;
-  width: min(300px, 78vw);
-  height: min(632px, 128vw);
+  width: min(640px, 94vw);
+  height: min(1348px, 198vw);
   background: linear-gradient(160deg, #13171f, #07090c);
   border-radius: 34px;
   border: 1px solid var(--line-strong);
